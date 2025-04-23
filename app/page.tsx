@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import { Github, Linkedin, Mail, Twitter, Menu, X, Moon, Sun } from "lucide-react"
 import Link from "next/link"
 import ContactForm from "./components/contact-form"
-import ProjectCard from "./components/project-card"
 import TechStack from "./components/tech-stack"
 import Image from "next/image"
 import { TermsDialog } from "./components/term-dialog"
@@ -227,14 +226,14 @@ export default function Page() {
               {/* Paragraph Content - Consistent with your text styling */}
               <div className="text-center md:text-left">
                 <p className="text-gray-500 dark:text-gray-200 md:text-lg leading-relaxed font-bold">
-                  Hey there! I'm Abhash Behera — a Full Stack Developer and DevOps Engineer who loves building slick, 
-                  scalable web apps and making sure they don't break the minute they hit production. Whether I'm wrangling frontend components, 
+                  Hey there! I&apos;m Abhash Behera — a Full Stack Developer and DevOps Engineer who loves building slick, 
+                  scalable web apps and making sure they don&apos;t break the minute they hit production. Whether I&apos;m wrangling frontend components, 
                   wiring up backend logic, or automating deployments, I aim to write clean code and ship stuff that just works (and keeps working). 
                   Bonus points if it looks good doing it.
                   <br /><br />
-                  When I'm not coding, you'll probably find me contributing to open-source, 
+                  When I&apos;m not coding, you&apos;ll probably find me contributing to open-source, 
                   geeking out over the latest dev tools, or hanging out in some corner of the internet with other 
-                  tech nerds. I'm big on learning, sharing, and building things that make life easier — or at least more fun. Let's make cool stuff that doesn't crash.
+                  tech nerds. I&apos;m big on learning, sharing, and building things that make life easier — or at least more fun. Let&apos;s make cool stuff that doesn&apos;t crash.
                 </p>
               </div>
             </div>

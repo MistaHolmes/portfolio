@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Copy, Mail, Twitter } from "lucide-react"
+import { Copy, Mail } from "lucide-react"
 import { useState } from "react"
 import Link from "next/link"
 
@@ -35,7 +35,7 @@ export default function ContactForm() {
             >
               shoot me a DM on Twitter
             </Link>{" "}
-            and I'll respond when I can. I ignore all soliciting.
+            and I&apos;poll respond when I can. I ignore all soliciting.
           </p>
         </div>
 

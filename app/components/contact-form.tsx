@@ -21,11 +21,11 @@ export default function ContactForm() {
   }
 
   return (
-    <Card className="p-6 max-w-md mx-auto bg-primary/3">
-      <div className="space-y-6">
-        <div className="flex flex-col items-center space-y-4">
-          <Mail className="h-12 w-12 text-primary" />
-          <p className="text-muted-foreground text-center">
+    <Card className="p-4 sm:p-6 w-full max-w-md mx-auto bg-background">
+      <div className="space-y-4 sm:space-y-6">
+        <div className="flex flex-col items-center space-y-2 sm:space-y-4">
+          <Mail className="h-10 w-10 sm:h-12 sm:w-12 text-primary" />
+          <p className="text-muted-foreground text-sm sm:text-base text-center px-2">
             Want to chat? Just{" "}
             <Link 
               href="https://x.com/AbhasBehera1" 
@@ -33,30 +33,33 @@ export default function ContactForm() {
               rel="noopener noreferrer"
               className="text-primary hover:underline"
             >
-              shoot me a DM with a direct question on Twitter
+              shoot me a DM on Twitter
             </Link>{" "}
-            and I'll respond whenever I can. I will ignore all soliciting.
+            and I'll respond when I can. I ignore all soliciting.
           </p>
         </div>
 
-        <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
-          <code className="font-mono text-sm md:text-base">{email}</code>
-          <div className="flex gap-2 ml-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-2 p-3 sm:p-4 bg-muted/50 rounded-lg">
+          <code className="font-mono text-xs sm:text-sm md:text-base truncate w-full text-center sm:text-left">
+            {email}
+          </code>
+          <div className="flex gap-2 w-full sm:w-auto">
             <Button
               variant="outline"
               size="sm"
               onClick={handleCopy}
-              className="h-8"
+              className="h-8 w-full sm:w-auto"
             >
-              <Copy className="h-4 w-4 mr-2" />
+              <Copy className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
               {copied ? "Copied!" : "Copy"}
             </Button>
             <Button
               size="sm"
               onClick={handleGmail}
-              className="h-8"
+              className="h-8 w-full sm:w-auto"
             >
-              <Mail className="h-4 w-4" />
+              <Mail className="h-3 w-3 sm:h-4 sm:w-4" />
+              <span className="sr-only">Open Gmail</span>
             </Button>
           </div>
         </div>
@@ -66,6 +69,7 @@ export default function ContactForm() {
             href="https://x.com/AbhasBehera1" 
             target="_blank"
             rel="noopener noreferrer"
+            className="w-full sm:w-auto"
           >
           </Link>
         </div>

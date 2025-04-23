@@ -21,7 +21,7 @@ export default function ContactForm() {
   }
 
   return (
-    <Card className="p-4 sm:p-6 w-full max-w-md mx-auto bg-background">
+    <Card className="p-4 sm:p-6 w-full max-w-md mx-auto bg-transparent">
       <div className="space-y-4 sm:space-y-6">
         <div className="flex flex-col items-center space-y-2 sm:space-y-4">
           <Mail className="h-10 w-10 sm:h-12 sm:w-12 text-primary" />

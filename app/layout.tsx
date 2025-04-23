@@ -31,10 +31,14 @@ export default function RootLayout({
           `
         }} />
       </head>
-      <body className={cn(
-        "min-h-screen bg-background font-sans antialiased m-0 p-0",
-        inter.className
-      )}>
+      <body
+        className={cn(
+          "min-h-screen font-sans antialiased text-foreground",
+          "dark:bg-gradient-to-r dark:from-[#1a1a1a] dark:via-[#111111] dark:to-[#1a1a1a]",
+          "dark:bg-[length:400%_400%] dark:animate-[gradientFlow_15s_ease_infinite]",
+          inter.className
+        )}
+      >
         <ThemeProvider 
           attribute="class" 
           defaultTheme="dark" 

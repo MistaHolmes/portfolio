@@ -28,8 +28,8 @@ export default function Page() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div className="min-h-screen bg-transparent">
+      <header className="sticky top-0 z-50 w-full border-b bg-transparent/95 backdrop-blur supports-[backdrop-filter]:bg-transparent/60">
         <div className="flex h-14 items-center justify-between">
           {/* Mobile menu button */}
           <button 
@@ -99,7 +99,7 @@ export default function Page() {
           >
             {/* Sidebar */}
             <div
-              className="w-64 bg-background/95 backdrop-blur-sm p-6 flex flex-col space-y-6 shadow-xl"
+              className="w-64 bg-transparent/95 backdrop-blur-sm p-6 flex flex-col space-y-6 shadow-xl"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close button */}

@@ -1,34 +1,83 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Mail, Twitter } from "lucide-react"
+import { Github, Linkedin, Mail, Twitter, Menu, X, Moon, Sun } from "lucide-react"
 import Link from "next/link"
 import ContactForm from "./components/contact-form"
 import ProjectCard from "./components/project-card"
 import TechStack from "./components/tech-stack"
-import Image from "next/image";
+import Image from "next/image"
 import { TermsDialog } from "./components/term-dialog"
+import { useState, useEffect } from "react"
+import { useTheme } from "next-themes"
 
 export default function Page() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen)
+  }
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark")
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-14 items-center">
-          <div className="mr-4 hidden md:flex">
-            <Link className="mr-6 flex items-center space-x-2" href="/">
-              <span className="hidden font-bold sm:inline-block">Abhash Behera</span>
+          {/* Mobile menu button */}
+          <button 
+            className="md:hidden mr-2 rounded-md p-2 text-foreground hover:bg-muted" 
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+
+          {/* Logo - visible on all devices */}
+          <Link className="mr-auto md:mr-0 flex items-center space-x-2" href="/">
+            <span className="font-bold">Abhash Behera</span>
+          </Link>
+
+          {/* Desktop navigation - centered */}
+          <nav className="hidden md:flex flex-1 justify-center items-center space-x-6 text-sm font-medium">
+            <Link href="#about" className="transition-colors hover:text-foreground/80">
+              About
             </Link>
-            <nav className="flex items-center space-x-6 text-sm font-medium">
-              <Link href="#about" className="transition-colors hover:text-foreground/80">
-                About
-              </Link>
-              <Link href="#projects" className="transition-colors hover:text-foreground/80">
-                Projects
-              </Link>
-              <Link href="#contact" className="transition-colors hover:text-foreground/80">
-                Contact
-              </Link>
-            </nav>
-          </div>
-          <Button variant="outline" className="ml-auto" asChild>
+            <Link href="#projects" className="transition-colors hover:text-foreground/80">
+              Projects
+            </Link>
+            <Link href="#contact" className="transition-colors hover:text-foreground/80">
+              Contact
+            </Link>
+          </nav>
+
+          {/* Theme toggle button - to the left of the resume button */}
+          <Button 
+            variant="outline" 
+            size="icon" 
+            className="mr-2" 
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            {mounted && (
+              theme === "dark" ? (
+                <Sun className="h-4 w-4" />
+              ) : (
+                <Moon className="h-4 w-4" />
+              )
+            )}
+          </Button>
+
+          {/* Resume button */}
+          <Button variant="outline" asChild>
             <a
               href="/resume.pdf"
               download="Abhash_Behera_Resume.pdf"
@@ -38,8 +87,62 @@ export default function Page() {
             </a>
           </Button>
         </div>
+
+        {/* Mobile menu (full-screen overlay) */}
+        {mobileMenuOpen && (
+          <div className="fixed inset-0 z-50 bg-background pt-14">
+            <nav className="flex flex-col items-center justify-center h-full space-y-8 text-lg font-medium">
+              <Link 
+                href="#about" 
+                className="transition-colors hover:text-foreground/80"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                About
+              </Link>
+              <Link 
+                href="#projects" 
+                className="transition-colors hover:text-foreground/80"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Projects
+              </Link>
+              <Link 
+                href="#contact" 
+                className="transition-colors hover:text-foreground/80"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
+              </Link>
+              
+              {/* Theme toggle in mobile menu */}
+              <Button 
+                variant="outline" 
+                className="flex items-center gap-2"
+                onClick={() => {
+                  toggleTheme();
+                  setMobileMenuOpen(false);
+                }}
+              >
+                {mounted && (
+                  theme === "dark" ? (
+                    <>
+                      <Sun className="h-4 w-4" />
+                      <span>Light Mode</span>
+                    </>
+                  ) : (
+                    <>
+                      <Moon className="h-4 w-4" />
+                      <span>Dark Mode</span>
+                    </>
+                  )
+                )}
+              </Button>
+            </nav>
+          </div>
+        )}
       </header>
 
+      {/* Rest of the page content remains unchanged */}
       <main className="container px-4 md:px-6">
         <section id="about" className="py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
@@ -99,13 +202,13 @@ export default function Page() {
 
             {/* Image + Content Row */}
             <div className="flex flex-col items-center gap-8 md:flex-row md:items-center md:gap-12">
-              {/* Circular Photo - Matches your aesthetic */}
-              <div className="w-80 h-80 rounded-full overflow-hidden border border-border shadow-lg flex-shrink-0">
+              {/* Circular Photo - Adjusted for better mobile display */}
+              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border border-border shadow-lg flex-shrink-0">
                 <Image
                   src="/pfp.png"
                   alt="Abhash Behera"
-                  width={192}
-                  height={192}
+                  width={320}
+                  height={320}
                   className="w-full h-full object-cover"
                   priority
                 />
@@ -114,21 +217,19 @@ export default function Page() {
               {/* Paragraph Content - Consistent with your text styling */}
               <div className="text-center md:text-left">
                 <p className="text-gray-500 dark:text-gray-400 md:text-lg leading-relaxed">
-                  I'm Abhash Behera, a Full Stack Developer passionate about building modern web applications. 
-                  With expertise in both frontend and backend technologies, I create efficient, scalable solutions 
-                  that deliver exceptional user experiences. My approach combines clean code principles with 
-                  thoughtful design to solve real-world problems.
+                  Hey there! I'm Abhash Behera — a Full Stack Developer and DevOps Engineer who loves building slick, 
+                  scalable web apps and making sure they don't break the minute they hit production. Whether I'm wrangling frontend components, 
+                  wiring up backend logic, or automating deployments, I aim to write clean code and ship stuff that just works (and keeps working). 
+                  Bonus points if it looks good doing it.
                   <br /><br />
-                  When I'm not coding, you'll find me contributing to open-source projects or exploring new 
-                  technologies. I believe in continuous learning and enjoy sharing knowledge through tech 
-                  communities. My goal is to build software that's not just functional but also makes a 
-                  positive impact.
+                  When I'm not coding, you'll probably find me contributing to open-source, 
+                  geeking out over the latest dev tools, or hanging out in some corner of the internet with other 
+                  tech nerds. I'm big on learning, sharing, and building things that make life easier — or at least more fun. Let's make cool stuff that doesn't crash.
                 </p>
               </div>
             </div>
           </div>
         </section>
-
 
         <section id="projects" className="py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">

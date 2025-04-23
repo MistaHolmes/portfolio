@@ -10,24 +10,24 @@ export function TermsDialog() {
     <>
       <button 
         onClick={() => setIsOpen(true)}
-        className="text-xs hover:underline underline-offset-4"
+        className="text-1x1 hover:underline underline-offset-4"
       >
         Terms of Service
       </button>
 
       {isOpen && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-background rounded-lg max-w-md w-full p-6 border">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="font-semibold">Terms of Service</h3>
+        <div className="bg-background rounded-lg max-w-md w-full p-6 border">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="font-semibold text-lg">Terms of Service</h3>
               <button 
                 onClick={() => setIsOpen(false)}
-                className="text-muted-foreground hover:text-foreground"
+                className="text-muted-foreground hover:text-foreground text-lg"
               >
                 ✕
               </button>
             </div>
-            <div className="max-h-[60vh] overflow-y-auto text-sm text-muted-foreground space-y-4">
+            <div className="max-h-[60vh] overflow-y-auto text-gray-500 dark:text-gray-400 space-y-4">
               <p className="italic">
                 Welcome to my portfolio website! By being here, you agree to the following terms, 
                 whether you read them or not (but you should, because they're kinda funny):

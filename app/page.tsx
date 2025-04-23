@@ -30,8 +30,8 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-14 items-center">
+       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+       <div className="flex h-14 items-center justify-between">
           {/* Mobile menu button */}
           <button 
             className="md:hidden mr-2 rounded-md p-2 text-foreground hover:bg-muted" 
@@ -47,7 +47,7 @@ export default function Page() {
           </Link>
 
           {/* Desktop navigation - centered */}
-          <nav className="hidden md:flex flex-1 justify-center items-center space-x-6 text-sm font-medium">
+          <nav className="hidden md:flex flex-1 justify-center items-center space-x-6 text-m font-medium">
             <Link href="#about" className="transition-colors hover:text-foreground/80">
               About
             </Link>
@@ -202,21 +202,31 @@ export default function Page() {
 
             {/* Image + Content Row */}
             <div className="flex flex-col items-center gap-8 md:flex-row md:items-center md:gap-12">
-              {/* Circular Photo - Adjusted for better mobile display */}
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border border-border shadow-lg flex-shrink-0">
-                <Image
-                  src="/pfp.png"
-                  alt="Abhash Behera"
-                  width={320}
-                  height={320}
-                  className="w-full h-full object-cover"
-                  priority
-                />
-              </div>
+            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border border-border shadow-lg flex-shrink-0">
+              {/* Dark mode image */}
+              <Image
+                src="/pfp.png"
+                alt="Abhash Behera"
+                width={320}
+                height={320}
+                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 dark:opacity-100 opacity-0"
+                priority
+              />
+              
+              {/* Light mode image */}
+              <Image
+                src="/pfp_lg.png"
+                alt="Abhash Behera"
+                width={320}
+                height={320}
+                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 dark:opacity-0 opacity-100"
+                priority
+              />
+            </div>
 
               {/* Paragraph Content - Consistent with your text styling */}
               <div className="text-center md:text-left">
-                <p className="text-gray-500 dark:text-gray-400 md:text-lg leading-relaxed">
+                <p className="text-gray-500 dark:text-gray-200 md:text-lg leading-relaxed font-bold">
                   Hey there! I'm Abhash Behera — a Full Stack Developer and DevOps Engineer who loves building slick, 
                   scalable web apps and making sure they don't break the minute they hit production. Whether I'm wrangling frontend components, 
                   wiring up backend logic, or automating deployments, I aim to write clean code and ship stuff that just works (and keeps working). 
@@ -297,12 +307,9 @@ export default function Page() {
 
       <footer className="border-t">
         <div className="container flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6">
-          <p className="text-xs text-gray-500 dark:text-gray-400">© 2025 Abhash Behera. All rights reserved.</p>
+          <p className="text-1xl text-gray-500 dark:text-gray-400">© 2025 Abhash Behera. All rights reserved.</p>
           <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <TermsDialog /> 
-            <Link className="text-xs hover:underline underline-offset-4" href="#">
-              Privacy
-            </Link>
           </nav>
         </div>
       </footer>

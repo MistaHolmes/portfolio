@@ -118,6 +118,17 @@
     @apply border-border outline-ring/50;
   }
   body {
+    margin: 0;
+    padding: 0;
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .theme-image-container {
+    position: relative;
+  }
+  .theme-image {
+    transition: opacity 300ms ease;
   }
 }

@@ -29,23 +29,27 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-background">
-       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-       <div className="flex h-14 items-center justify-between">
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="flex h-14 items-center justify-between">
           {/* Mobile menu button */}
           <button 
-            className="md:hidden mr-2 rounded-md p-2 text-foreground hover:bg-muted" 
+            className="md:hidden mr-2 rounded-md p-2 text-foreground hover:bg-muted transition-colors"
             onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            {mobileMenuOpen ? (
+              <X size={20} className="text-foreground/90 dark:text-foreground/80" />
+            ) : (
+              <Menu size={20} className="text-foreground/90 dark:text-foreground/80" />
+            )}
           </button>
 
-          {/* Logo - visible on all devices */}
+          {/* Logo */}
           <Link className="mr-auto md:mr-0 flex items-center space-x-2" href="/">
             <span className="font-bold">Abhash Behera</span>
           </Link>
 
-          {/* Desktop navigation - centered */}
+          {/* Desktop navigation */}
           <nav className="hidden md:flex flex-1 justify-center items-center space-x-6 text-m font-medium">
             <Link href="#about" className="transition-colors hover:text-foreground/80">
               About
@@ -58,7 +62,7 @@ export default function Page() {
             </Link>
           </nav>
 
-          {/* Theme toggle button - to the left of the resume button */}
+          {/* Theme toggle */}
           <Button 
             variant="outline" 
             size="icon" 
@@ -87,61 +91,68 @@ export default function Page() {
           </Button>
         </div>
 
-        {/* Mobile menu (full-screen overlay) */}
+        {/* Improved Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="fixed inset-0 z-50 bg-background pt-14">
-            <nav className="flex flex-col items-center justify-center h-full space-y-8 text-lg font-medium">
-              <Link 
-                href="#about" 
-                className="transition-colors hover:text-foreground/80"
+          <div
+            className="fixed inset-0 z-50 flex"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            {/* Sidebar */}
+            <div
+              className="w-64 bg-background/95 backdrop-blur-sm p-6 flex flex-col space-y-6 shadow-xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close button */}
+              <button
+                className="self-start p-2 rounded-md hover:bg-muted transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close menu"
               >
-                About
-              </Link>
-              <Link 
-                href="#projects" 
-                className="transition-colors hover:text-foreground/80"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Projects
-              </Link>
-              <Link 
-                href="#contact" 
-                className="transition-colors hover:text-foreground/80"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Contact
-              </Link>
-              
-              {/* Theme toggle in mobile menu */}
-              <Button 
-                variant="outline" 
-                className="flex items-center gap-2"
-                onClick={() => {
-                  toggleTheme();
-                  setMobileMenuOpen(false);
-                }}
-              >
-                {mounted && (
-                  theme === "dark" ? (
-                    <>
-                      <Sun className="h-4 w-4" />
-                      <span>Light Mode</span>
-                    </>
-                  ) : (
-                    <>
-                      <Moon className="h-4 w-4" />
-                      <span>Dark Mode</span>
-                    </>
-                  )
-                )}
-              </Button>
-            </nav>
+                <X size={24} className="text-foreground/90 dark:text-foreground/80" />
+              </button>
+
+              {/* Nav links */}
+              <nav className="flex flex-col space-y-4 text-lg font-medium">
+                <Link href="#about" onClick={() => setMobileMenuOpen(false)} className="hover:text-foreground/80">
+                  About
+                </Link>
+                <Link href="#projects" onClick={() => setMobileMenuOpen(false)} className="hover:text-foreground/80">
+                  Projects
+                </Link>
+                <Link href="#contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-foreground/80">
+                  Contact
+                </Link>
+                <Button
+                  variant="outline"
+                  className="flex items-center gap-2"
+                  onClick={() => {
+                    toggleTheme()
+                    setMobileMenuOpen(false)
+                  }}
+                >
+                  {mounted && (
+                    theme === "dark" ? (
+                      <>
+                        <Sun className="h-4 w-4" />
+                        <span>Light Mode</span>
+                      </>
+                    ) : (
+                      <>
+                        <Moon className="h-4 w-4" />
+                        <span>Dark Mode</span>
+                      </>
+                    )
+                  )}
+                </Button>
+              </nav>
+            </div>
+
+            {/* Overlay that closes the menu when clicked */}
+            <div className="flex-1" />
           </div>
         )}
       </header>
 
-      {/* Rest of the page content remains unchanged */}
       <main className="container px-4 md:px-6">
         <section id="aboutme" className="py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">

@@ -144,7 +144,7 @@ export default function Page() {
 
       {/* Rest of the page content remains unchanged */}
       <main className="container px-4 md:px-6">
-        <section id="about" className="py-12 md:py-24 lg:py-32">
+        <section id="aboutme" className="py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -305,7 +305,7 @@ export default function Page() {
         </section>
       </main>
 
-      <footer className="border-t">
+      <footer className="border-t-2 border-amber-50">
         <div className="container flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6">
           <p className="text-1xl text-gray-500 dark:text-gray-400">© 2025 Abhash Behera. All rights reserved.</p>
           <nav className="sm:ml-auto flex gap-4 sm:gap-6">

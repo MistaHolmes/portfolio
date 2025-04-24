@@ -34,8 +34,8 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen font-sans antialiased text-foreground",
-          "dark:bg-gradient-to-r dark:from-[#1a1a1a] dark:via-[#111111] dark:to-[#1a1a1a]",
-          "dark:bg-[length:400%_400%] dark:animate-[gradientFlow_15s_ease_infinite]",
+          "dark:bg-gradient-to-r dark:from-[#0a0a0a] dark:via-[#1c1c1c] dark:to-[#0a0a0a]",
+          "dark:bg-[length:800%_100%] dark:animate-[gradientFlow_15s_ease-in-out_infinite]",
           inter.className
         )}
       >

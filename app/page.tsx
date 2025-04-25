@@ -82,8 +82,9 @@ export default function Page() {
           {/* Resume button */}
           <Button variant="outline" asChild>
             <a
-              href="/resume.pdf"
-              download="Abhash_Behera_Resume.pdf"
+              href="https://drive.google.com/uc?export=download&id=1d-7IhNgci4yoYD75Jhywj9SJCCJYsaTy"
+              target="_blank"
+              rel="noopener noreferrer"
               className="no-underline"
             >
               Resume
@@ -165,7 +166,7 @@ export default function Page() {
               </h1>
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
                   Architecting robust, scalable web applications and infrastructure. 
-                  Blending clean code, automation, and cloud-native practices to deliver high-performance digital products that solve real-world problems.
+                  Blending clean code, and cloud-native practices to deliver high-performance digital products that solve real-world problems.
                 </p>
               </div>
               <div className="space-x-4">
@@ -237,14 +238,12 @@ export default function Page() {
               {/* Paragraph Content - Consistent with your text styling */}
               <div className="text-center md:text-left">
                 <p className="text-gray-500 dark:text-gray-200 md:text-lg leading-relaxed font-bold">
-                  Hey there! I&apos;m Abhash Behera — a Full Stack Developer and DevOps Engineer who loves building slick, 
-                  scalable web apps and making sure they don&apos;t break the minute they hit production. Whether I&apos;m wrangling frontend components, 
-                  wiring up backend logic, or automating deployments, I aim to write clean code and ship stuff that just works (and keeps working). 
-                  Bonus points if it looks good doing it.
+                  Hello! I&apos;m Abhash Behera — a Full Stack Developer and DevOps Engineer with a passion for building robust, scalable web applications 
+                  and ensuring seamless performance in production environments. From developing intuitive frontend interfaces to designing efficient backend systems 
+                  and streamlining CI/CD pipelines, I focus on writing maintainable code and delivering solutions that are reliable and efficient.
                   <br /><br />
-                  When I&apos;m not coding, you&apos;ll probably find me contributing to open-source, 
-                  geeking out over the latest dev tools, or hanging out in some corner of the internet with other 
-                  tech nerds. I&apos;m big on learning, sharing, and building things that make life easier — or at least more fun. Let&apos;s make cool stuff that doesn&apos;t crash.
+                  Outside of development, I actively contribute to open-source projects, stay updated with emerging technologies, and engage with the tech community. 
+                  I value continuous learning, knowledge sharing, and creating tools and platforms that improve productivity and user experience. Let&apos;s build solutions that are smart, stable, and impactful.
                 </p>
               </div>
             </div>

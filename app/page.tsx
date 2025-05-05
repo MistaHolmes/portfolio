@@ -269,7 +269,7 @@ export default function Page() {
                   </Button>
                 </Link>
                 
-                <Link href="mailto:abhasbehera320@gmail.com">
+                <Link href="#contact">
                   <Button variant="outline" size="icon">
                     <Mail className="h-4 w-4" />
                     <span className="sr-only">Email</span>

@@ -35,7 +35,7 @@ export default function ContactForm() {
             >
               shoot me a DM on Twitter
             </Link>{" "}
-            and I&apos;poll respond when I can. I ignore all soliciting.
+            and I&apos;ll respond when I can. I ignore all soliciting.
           </p>
         </div>
 

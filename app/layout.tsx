@@ -18,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="theme-transition text-[90%] sm:text-[90%] lg:text-[95%] no-scroll-gap">
       <head>
+        <link rel="icon" href="/vercel.svg" type="image/svg+xml" />
         <script dangerouslySetInnerHTML={{
           __html: `
             document.documentElement.classList.add('theme-transition');

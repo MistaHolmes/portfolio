@@ -294,9 +294,11 @@ export default function Page() {
               className="text-center mb-12"
               variants={itemVariants}
             >
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              <h2 className="text-3xl font-bo6ld tracking-tighter sm:text-4xl md:text-5xl">
                 About Me
               </h2>
+
+              {/* Add Experience Here */}
             </motion.div>
 
             {/* Image + Content Row */}

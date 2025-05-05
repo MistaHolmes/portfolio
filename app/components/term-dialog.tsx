@@ -41,12 +41,6 @@ export function TermsDialog() {
                 </li>
                 
                 <li>
-                  <strong>Use At Your Own Risk</strong><br />
-                  This site might make you laugh, cry, or question your own life choices. 
-                  I&apos;m not responsible for any emotional damage caused by my color choices or cheesy jokes in the code.
-                </li>
-                
-                <li>
                   <strong>No Hacky Hackers</strong><br />
                   If you try to hack this site, may your Wi-Fi forever be unstable and your coffee always cold. 
                   Seriously though, don&apos;t.
@@ -73,11 +67,6 @@ export function TermsDialog() {
                 <li>
                   <strong>Bugs Are Feature Candidates</strong><br />
                   If you find a bug, it&apos;s not a bug. It&apos;s an interactive mystery experience. You&apos;re welcome.
-                </li>
-                
-                <li>
-                  <strong>Terms Subject to Change When I&apos;m Bored</strong><br />
-                  These terms might change whenever I feel like being funnier, or if I find a better joke.
                 </li>
               </ol>
               

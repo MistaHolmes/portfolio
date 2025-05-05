@@ -1,5 +1,4 @@
 import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
@@ -31,14 +30,7 @@ export default function RootLayout({
           `
         }} />
       </head>
-      <body
-        className={cn(
-          "min-h-screen font-sans antialiased text-foreground",
-          "dark:bg-gradient-to-r dark:from-[#0a0a0a] dark:via-[#1c1c1c] dark:to-[#0a0a0a]",
-          "dark:bg-[length:800%_100%] dark:animate-[gradientFlow_15s_ease-in-out_infinite]",
-          inter.className
-        )}
-      >
+      <body>
         <ThemeProvider 
           attribute="class" 
           defaultTheme="dark" 

@@ -240,9 +240,9 @@ export default function Page() {
                 <p className="text-gray-500 dark:text-gray-200 md:text-lg leading-relaxed font-bold">
                   Hello! I&apos;m Abhash Behera — a Full Stack Developer and DevOps Engineer with a passion for building robust, scalable web applications 
                   and ensuring seamless performance in production environments. From developing intuitive frontend interfaces to designing efficient backend systems 
-                  and streamlining CI/CD pipelines, I focus on writing maintainable code and delivering solutions that are reliable and efficient.
+                  and streamlining CI/CD pipelines.
                   <br /><br />
-                  Outside of development, I actively contribute to open-source projects, stay updated with emerging technologies, and engage with the tech community. 
+                  Outside of development, stay updated with emerging technologies, and engage with the tech community. 
                   I value continuous learning, knowledge sharing, and creating tools and platforms that improve productivity and user experience. Let&apos;s build solutions that are smart, stable, and impactful.
                 </p>
               </div>

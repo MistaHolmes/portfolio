@@ -7,8 +7,9 @@ import ContactForm from "./components/contact-form"
 import TechStack from "./components/tech-stack"
 import Image from "next/image"
 import { TermsDialog } from "./components/term-dialog"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useTheme } from "next-themes"
+import { motion, useInView } from "framer-motion"
 
 export default function Page() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -27,9 +28,51 @@ export default function Page() {
     setTheme(theme === "dark" ? "light" : "dark")
   }
 
+  // Animation variants for the waterfall effect
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: -50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+      },
+    },
+  }
+  
+  // References for all main sections to use with useInView
+  const aboutMeRef = useRef(null)
+  const aboutRef = useRef(null)
+  const projectsRef = useRef(null)
+  const techStackRef = useRef(null)
+  const contactRef = useRef(null)
+  
+  // Track if sections are in view
+  const aboutMeInView = useInView(aboutMeRef, { once: false, amount: 0.2 })
+  const aboutInView = useInView(aboutRef, { once: false, amount: 0.2 })
+  const projectsInView = useInView(projectsRef, { once: false, amount: 0.2 })
+  const techStackInView = useInView(techStackRef, { once: false, amount: 0.2 })
+  const contactInView = useInView(contactRef, { once: false, amount: 0.2 })
+
   return (
     <div className="min-h-screen bg-transparent">
-      <header className="sticky top-0 z-50 w-full border-b bg-transparent/95 backdrop-blur supports-[backdrop-filter]:bg-transparent/60">
+      <motion.header 
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="sticky top-0 z-50 w-full border-b bg-transparent/95 backdrop-blur supports-[backdrop-filter]:bg-transparent/60"
+      >
         <div className="flex h-14 items-center justify-between">
           {/* Mobile menu button */}
           <button 
@@ -99,7 +142,11 @@ export default function Page() {
             onClick={() => setMobileMenuOpen(false)}
           >
             {/* Sidebar */}
-            <div
+            <motion.div
+              initial={{ x: -300 }}
+              animate={{ x: 0 }}
+              exit={{ x: -300 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
               className="w-64 bg-transparent/95 backdrop-blur-sm p-6 flex flex-col space-y-6 shadow-xl"
               onClick={(e) => e.stopPropagation()}
             >
@@ -146,30 +193,61 @@ export default function Page() {
                   )}
                 </Button>
               </nav>
-            </div>
+            </motion.div>
 
             {/* Overlay that closes the menu when clicked */}
             <div className="flex-1" />
           </div>
         )}
-      </header>
+      </motion.header>
 
       <main className="container px-4 md:px-6">
-        <section id="aboutme" className="py-12 md:py-24 lg:py-32">
+        <motion.section 
+          ref={aboutMeRef}
+          id="aboutme" 
+          className="py-12 md:py-24 lg:py-32"
+          initial="hidden"
+          animate={aboutMeInView ? "visible" : "hidden"}
+          variants={containerVariants}
+        >
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-center">
-                <span className="block">Full Stack Developer</span>
-                <span className="block font-medium text-muted-foreground">and</span>
-                <span className="block">DevOps Engineer</span>
-              </h1>
-                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+              <motion.div 
+                className="space-y-2"
+                variants={itemVariants}
+              >
+                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-center">
+                  <motion.span 
+                    className="block"
+                    variants={itemVariants}
+                  >
+                    Full Stack Developer
+                  </motion.span>
+                  <motion.span 
+                    className="block font-medium text-muted-foreground"
+                    variants={itemVariants}
+                  >
+                    and
+                  </motion.span>
+                  <motion.span 
+                    className="block"
+                    variants={itemVariants}
+                  >
+                    DevOps Engineer
+                  </motion.span>
+                </h1>
+                <motion.p 
+                  className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400"
+                  variants={itemVariants}
+                >
                   Architecting robust, scalable web applications and infrastructure. 
                   Blending clean code, and cloud-native practices to deliver high-performance digital products that solve real-world problems.
-                </p>
-              </div>
-              <div className="space-x-4">
+                </motion.p>
+              </motion.div>
+              <motion.div 
+                className="space-x-4"
+                variants={itemVariants}
+              >
                 <Link href="https://github.com/MistaHolmes" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" size="icon">
                     <Github className="h-4 w-4" />
@@ -197,46 +275,67 @@ export default function Page() {
                     <span className="sr-only">Email</span>
                   </Button>
                 </Link>
-              </div>
+              </motion.div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
-        <section id="about" className="py-12 md:py-24 lg:py-32">
+        <motion.section 
+          ref={aboutRef}
+          id="about" 
+          className="py-12 md:py-24 lg:py-32"
+          initial="hidden"
+          animate={aboutInView ? "visible" : "hidden"}
+          variants={containerVariants}
+        >
           <div className="container px-4 md:px-6">
             {/* Centered Heading - Matches your project section style */}
-            <div className="text-center mb-12">
+            <motion.div 
+              className="text-center mb-12"
+              variants={itemVariants}
+            >
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 About Me
               </h2>
-            </div>
+            </motion.div>
 
             {/* Image + Content Row */}
-            <div className="flex flex-col items-center gap-8 md:flex-row md:items-center md:gap-12">
-            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border border-border shadow-lg flex-shrink-0">
-              {/* Dark mode image */}
-              <Image
-                src="/pfp.png"
-                alt="Abhash Behera"
-                width={320}
-                height={320}
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 dark:opacity-100 opacity-0"
-                priority
-              />
-              
-              {/* Light mode image */}
-              <Image
-                src="/pfp_lg.png"
-                alt="Abhash Behera"
-                width={320}
-                height={320}
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 dark:opacity-0 opacity-100"
-                priority
-              />
-            </div>
+            <motion.div 
+              className="flex flex-col items-center gap-8 md:flex-row md:items-center md:gap-12"
+              variants={itemVariants}
+            >
+              <motion.div 
+                className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border border-border shadow-lg flex-shrink-0"
+                variants={itemVariants}
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              >
+                {/* Dark mode image */}
+                <Image
+                  src="/pfp.png"
+                  alt="Abhash Behera"
+                  width={320}
+                  height={320}
+                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 dark:opacity-100 opacity-0"
+                  priority
+                />
+                
+                {/* Light mode image */}
+                <Image
+                  src="/pfp_lg.png"
+                  alt="Abhash Behera"
+                  width={320}
+                  height={320}
+                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 dark:opacity-0 opacity-100"
+                  priority
+                />
+              </motion.div>
 
               {/* Paragraph Content - Consistent with your text styling */}
-              <div className="text-center md:text-left">
+              <motion.div 
+                className="text-center md:text-left"
+                variants={itemVariants}
+              >
                 <p className="text-gray-500 dark:text-gray-200 md:text-lg leading-relaxed font-bold">
                   Hello! I&apos;m Abhash Behera — a Full Stack Developer and DevOps Engineer with a passion for building robust, scalable web applications 
                   and ensuring seamless performance in production environments. From developing intuitive frontend interfaces to designing efficient backend systems 
@@ -245,20 +344,43 @@ export default function Page() {
                   Outside of development, stay updated with emerging technologies, and engage with the tech community. 
                   I value continuous learning, knowledge sharing, and creating tools and platforms that improve productivity and user experience. Let&apos;s build solutions that are smart, stable, and impactful.
                 </p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
-        </section>
+        </motion.section>
 
-        <section id="projects" className="py-12 md:py-24 lg:py-32">
+        <motion.section 
+          ref={projectsRef}
+          id="projects" 
+          className="py-12 md:py-24 lg:py-32"
+          initial="hidden"
+          animate={projectsInView ? "visible" : "hidden"}
+          variants={containerVariants}
+        >
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center">
+            <motion.h2 
+              className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center"
+              variants={itemVariants}
+            >
               Projects
-            </h2>
-            <div className="flex justify-center">
+            </motion.h2>
+            <motion.div 
+              className="flex justify-center"
+              variants={itemVariants}
+            >
               <div className="max-w-md w-full">
-                <div className="flex flex-col items-center justify-center min-h-[300px] rounded-xl border border-dashed border-border bg-muted/50 p-8 text-center">
-                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-muted mb-4">
+                <motion.div 
+                  className="flex flex-col items-center justify-center min-h-[300px] rounded-xl border border-dashed border-border bg-muted/50 p-8 text-center"
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                >
+                  <motion.div 
+                    className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-muted mb-4"
+                    variants={itemVariants}
+                    whileHover={{ rotate: 180 }}
+                    transition={{ duration: 0.8 }}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -280,48 +402,82 @@ export default function Page() {
                       <path d="M6 12H2" />
                       <path d="m7.8 7.8-2.9-2.9" />
                     </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-muted-foreground mb-2">
+                  </motion.div>
+                  <motion.h3 
+                    className="text-xl font-semibold text-muted-foreground mb-2"
+                    variants={itemVariants}
+                  >
                     Working on it...
-                  </h3>
-                  <p className="text-muted-foreground">
+                  </motion.h3>
+                  <motion.p 
+                    className="text-muted-foreground"
+                    variants={itemVariants}
+                  >
                     Exciting projects coming soon!
-                  </p>
-                </div>
+                  </motion.p>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </section>
+        </motion.section>
 
-        <section className="py-12 md:py-24 lg:py-32">
+        <motion.section 
+          ref={techStackRef}
+          className="py-12 md:py-24 lg:py-32"
+          initial="hidden"
+          animate={techStackInView ? "visible" : "hidden"}
+          variants={containerVariants}
+        >
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center">
+            <motion.h2 
+              className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center"
+              variants={itemVariants}
+            >
               Tech Stack
-            </h2>
-            <TechStack />
+            </motion.h2>
+            <motion.div variants={itemVariants}>
+              <TechStack />
+            </motion.div>
           </div>
-        </section>
+        </motion.section>
 
-        <section id="contact" className="py-12 md:py-24 lg:py-32">
+        <motion.section 
+          ref={contactRef}
+          id="contact" 
+          className="py-12 md:py-24 lg:py-32"
+          initial="hidden"
+          animate={contactInView ? "visible" : "hidden"}
+          variants={containerVariants}
+        >
           <div className="container px-4 md:px-6">
             <div className="mx-auto max-w-2xl">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center">
+              <motion.h2 
+                className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center"
+                variants={itemVariants}
+              >
                 Get in Touch
-              </h2>
-              <ContactForm />
+              </motion.h2>
+              <motion.div variants={itemVariants}>
+                <ContactForm />
+              </motion.div>
             </div>
           </div>
-        </section>
+        </motion.section>
       </main>
 
-      <footer className="border-t-2 border-amber-50">
+      <motion.footer 
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.2, duration: 0.5 }}
+        className="border-t-2 border-amber-50"
+      >
         <div className="container flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6">
           <p className="text-1xl text-gray-500 dark:text-gray-400">© 2025 Abhash Behera. All rights reserved.</p>
           <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <TermsDialog /> 
           </nav>
         </div>
-      </footer>
+      </motion.footer>
     </div>
   )
 }

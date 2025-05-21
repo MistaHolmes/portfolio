@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Mail, Twitter, Menu, X, Moon, Sun } from "lucide-react"
+import { Menu, X, Moon, Sun } from "lucide-react"
 import Link from "next/link"
 import ContactForm from "./components/contact-form"
 import TechStack from "./components/tech-stack"
@@ -10,6 +10,7 @@ import { TermsDialog } from "./components/term-dialog"
 import { useState, useEffect, useRef } from "react"
 import { useTheme } from "next-themes"
 import { motion, useInView } from "framer-motion"
+import Hero from "@/components/Hero" 
 
 export default function Page() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -51,15 +52,11 @@ export default function Page() {
     },
   }
   
-  // References for all main sections to use with useInView
-  const aboutMeRef = useRef(null)
   const aboutRef = useRef(null)
   const projectsRef = useRef(null)
   const techStackRef = useRef(null)
   const contactRef = useRef(null)
   
-  // Track if sections are in view
-  const aboutMeInView = useInView(aboutMeRef, { once: false, amount: 0.2 })
   const aboutInView = useInView(aboutRef, { once: false, amount: 0.2 })
   const projectsInView = useInView(projectsRef, { once: false, amount: 0.2 })
   const techStackInView = useInView(techStackRef, { once: false, amount: 0.2 })
@@ -202,83 +199,10 @@ export default function Page() {
       </motion.header>
 
       <main className="container px-4 md:px-6">
-        <motion.section 
-          ref={aboutMeRef}
-          id="aboutme" 
-          className="py-12 md:py-24 lg:py-32"
-          initial="hidden"
-          animate={aboutMeInView ? "visible" : "hidden"}
-          variants={containerVariants}
-        >
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <motion.div 
-                className="space-y-2"
-                variants={itemVariants}
-              >
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-center">
-                  <motion.span 
-                    className="block"
-                    variants={itemVariants}
-                  >
-                    Full Stack Developer
-                  </motion.span>
-                  <motion.span 
-                    className="block font-medium text-muted-foreground"
-                    variants={itemVariants}
-                  >
-                    and
-                  </motion.span>
-                  <motion.span 
-                    className="block"
-                    variants={itemVariants}
-                  >
-                    DevOps Engineer
-                  </motion.span>
-                </h1>
-                <motion.p 
-                  className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400"
-                  variants={itemVariants}
-                >
-                  Architecting robust, scalable web applications and infrastructure. 
-                  Blending clean code, and cloud-native practices to deliver high-performance digital products that solve real-world problems.
-                </motion.p>
-              </motion.div>
-              <motion.div 
-                className="space-x-4"
-                variants={itemVariants}
-              >
-                <Link href="https://github.com/MistaHolmes" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" size="icon">
-                    <Github className="h-4 w-4" />
-                    <span className="sr-only">GitHub</span>
-                  </Button>
-                </Link>
-                
-                <Link href="https://www.linkedin.com/in/abhash-behera-70b77528b/" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" size="icon">
-                    <Linkedin className="h-4 w-4" />
-                    <span className="sr-only">LinkedIn</span>
-                  </Button>
-                </Link>
-                
-                <Link href="https://x.com/AbhasBehera1" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" size="icon">
-                    <Twitter className="h-4 w-4" />
-                    <span className="sr-only">Twitter</span>
-                  </Button>
-                </Link>
-                
-                <Link href="#contact">
-                  <Button variant="outline" size="icon">
-                    <Mail className="h-4 w-4" />
-                    <span className="sr-only">Email</span>
-                  </Button>
-                </Link>
-              </motion.div>
-            </div>
-          </div>
-        </motion.section>
+        <div className="halo-container">
+          <div className="halo-background" />
+          <Hero />
+        </div>
 
         <motion.section 
           ref={aboutRef}

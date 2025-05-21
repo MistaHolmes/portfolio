@@ -19,7 +19,7 @@ export const metadata : Metadata = {
     siteName: "Abhash Behera Portfolio",
     images: [
       {
-        url: "/og-image.png", // Should be in the public directory
+        url: "/og-image.png", 
         width: 1200,
         height: 630,
         alt: "Abhash Behera Portfolio Preview",

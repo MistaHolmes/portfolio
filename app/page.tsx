@@ -122,7 +122,7 @@ export default function Page() {
           {/* Resume button */}
           <Button variant="outline" asChild>
             <a
-              href="https://drive.google.com/uc?export=download&id=1d-7IhNgci4yoYD75Jhywj9SJCCJYsaTy"
+              href="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/Resume-Abhash.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="no-underline"

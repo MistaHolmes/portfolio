@@ -42,7 +42,7 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4">
+    <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 ">
       <motion.div
         variants={containerVariants}
         initial="hidden"

@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Mail, Twitter, Menu, X, Moon, Sun } from "lucide-react"
+import { Menu, X, Moon, Sun } from "lucide-react"
 import Link from "next/link"
 import ContactForm from "./components/contact-form"
 import TechStack from "./components/tech-stack"
@@ -10,6 +10,8 @@ import { TermsDialog } from "./components/term-dialog"
 import { useState, useEffect, useRef } from "react"
 import { useTheme } from "next-themes"
 import { motion, useInView } from "framer-motion"
+import Hero from "@/components/Hero" 
+import ProjectCard from "./components/project-card"
 
 export default function Page() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -51,15 +53,11 @@ export default function Page() {
     },
   }
   
-  // References for all main sections to use with useInView
-  const aboutMeRef = useRef(null)
   const aboutRef = useRef(null)
   const projectsRef = useRef(null)
   const techStackRef = useRef(null)
   const contactRef = useRef(null)
   
-  // Track if sections are in view
-  const aboutMeInView = useInView(aboutMeRef, { once: false, amount: 0.2 })
   const aboutInView = useInView(aboutRef, { once: false, amount: 0.2 })
   const projectsInView = useInView(projectsRef, { once: false, amount: 0.2 })
   const techStackInView = useInView(techStackRef, { once: false, amount: 0.2 })
@@ -125,7 +123,7 @@ export default function Page() {
           {/* Resume button */}
           <Button variant="outline" asChild>
             <a
-              href="https://drive.google.com/uc?export=download&id=1d-7IhNgci4yoYD75Jhywj9SJCCJYsaTy"
+              href="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/Resume-Abhash.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="no-underline"
@@ -202,83 +200,10 @@ export default function Page() {
       </motion.header>
 
       <main className="container px-4 md:px-6">
-        <motion.section 
-          ref={aboutMeRef}
-          id="aboutme" 
-          className="py-12 md:py-24 lg:py-32"
-          initial="hidden"
-          animate={aboutMeInView ? "visible" : "hidden"}
-          variants={containerVariants}
-        >
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <motion.div 
-                className="space-y-2"
-                variants={itemVariants}
-              >
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-center">
-                  <motion.span 
-                    className="block"
-                    variants={itemVariants}
-                  >
-                    Full Stack Developer
-                  </motion.span>
-                  <motion.span 
-                    className="block font-medium text-muted-foreground"
-                    variants={itemVariants}
-                  >
-                    and
-                  </motion.span>
-                  <motion.span 
-                    className="block"
-                    variants={itemVariants}
-                  >
-                    DevOps Engineer
-                  </motion.span>
-                </h1>
-                <motion.p 
-                  className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400"
-                  variants={itemVariants}
-                >
-                  Architecting robust, scalable web applications and infrastructure. 
-                  Blending clean code, and cloud-native practices to deliver high-performance digital products that solve real-world problems.
-                </motion.p>
-              </motion.div>
-              <motion.div 
-                className="space-x-4"
-                variants={itemVariants}
-              >
-                <Link href="https://github.com/MistaHolmes" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" size="icon">
-                    <Github className="h-4 w-4" />
-                    <span className="sr-only">GitHub</span>
-                  </Button>
-                </Link>
-                
-                <Link href="https://www.linkedin.com/in/abhash-behera-70b77528b/" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" size="icon">
-                    <Linkedin className="h-4 w-4" />
-                    <span className="sr-only">LinkedIn</span>
-                  </Button>
-                </Link>
-                
-                <Link href="https://x.com/AbhasBehera1" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" size="icon">
-                    <Twitter className="h-4 w-4" />
-                    <span className="sr-only">Twitter</span>
-                  </Button>
-                </Link>
-                
-                <Link href="#contact">
-                  <Button variant="outline" size="icon">
-                    <Mail className="h-4 w-4" />
-                    <span className="sr-only">Email</span>
-                  </Button>
-                </Link>
-              </motion.div>
-            </div>
-          </div>
-        </motion.section>
+        <div className="halo-container">
+          <div className="halo-background" />
+          <Hero />
+        </div>
 
         <motion.section 
           ref={aboutRef}
@@ -289,14 +214,16 @@ export default function Page() {
           variants={containerVariants}
         >
           <div className="container px-4 md:px-6">
-            {/* Centered Heading - Matches your project section style */}
             <motion.div 
               className="text-center mb-12"
               variants={itemVariants}
             >
-              <h2 className="text-3xl font-bo6ld tracking-tighter sm:text-4xl md:text-5xl">
-                About Me
-              </h2>
+              <motion.h1 
+              className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mb-12 text-center"
+              variants={itemVariants}
+            >
+              About Me
+            </motion.h1>
 
               {/* Add Experience Here */}
             </motion.div>
@@ -359,66 +286,59 @@ export default function Page() {
           animate={projectsInView ? "visible" : "hidden"}
           variants={containerVariants}
         >
-          <div className="container px-4 md:px-6">
-            <motion.h2 
-              className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center"
+          <div className="container px-4 md:px-6 mx-auto">
+            <motion.h1 
+              className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mb-12 text-center"
               variants={itemVariants}
             >
               Projects
-            </motion.h2>
+            </motion.h1>
+
             <motion.div 
-              className="flex justify-center"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center"
               variants={itemVariants}
             >
-              <div className="max-w-md w-full">
-                <motion.div 
-                  className="flex flex-col items-center justify-center min-h-[300px] rounded-xl border border-dashed border-border bg-muted/50 p-8 text-center"
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                >
-                  <motion.div 
-                    className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-muted mb-4"
-                    variants={itemVariants}
-                    whileHover={{ rotate: 180 }}
-                    transition={{ duration: 0.8 }}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="text-muted-foreground h-8 w-8"
-                    >
-                      <path d="M12 2v4" />
-                      <path d="m16.2 7.8 2.9-2.9" />
-                      <path d="M18 12h4" />
-                      <path d="m16.2 16.2 2.9 2.9" />
-                      <path d="M12 18v4" />
-                      <path d="m7.8 16.2-2.9 2.9" />
-                      <path d="M6 12H2" />
-                      <path d="m7.8 7.8-2.9-2.9" />
-                    </svg>
-                  </motion.div>
-                  <motion.h3 
-                    className="text-xl font-semibold text-muted-foreground mb-2"
-                    variants={itemVariants}
-                  >
-                    Working on it...
-                  </motion.h3>
-                  <motion.p 
-                    className="text-muted-foreground"
-                    variants={itemVariants}
-                  >
-                    Exciting projects coming soon!
-                  </motion.p>
-                </motion.div>
-              </div>
+              <motion.div
+                className="w-full max-w-md"
+                variants={itemVariants}
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              >
+                <ProjectCard
+                  title="SwarajDesk"
+                  description="A grievance redressal system empowering citizens to raise and track issues with municipal authorities."
+                  image="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/image%20(2).png"
+                  link="https://github.com/MistaHolmes/gms"
+                  website="https://swarajnew.adityahota.online"
+                  tags={[
+                    "Next.js", "Prisma ORM", "Express", "WebSockets", "Google Cloud Run",
+                    "Swaraj AI", "Vercel", "Docker", "Tailwind", "VertexAI", "Nodemailer","Batoi Insights",
+                    "TurboRepo",
+                  ]}
+                />
+              </motion.div>
+
+              <motion.div
+                className="w-full max-w-md"
+                variants={itemVariants}
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              >
+                <ProjectCard
+                  title="DraftDock"
+                  description="A Minimalist Blogging Platform for Users that just want to share their thoughts and ideas." 
+                  image="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/DrafrDockLanding.png"
+                  link="https://github.com/MistaHolmes/DraftDock"
+                  // website=""
+                  tags={[
+                    "React",  "Vite","Tailwind","Express" ,"WebSockets", "Google Cloud (GKE)","SwaggerUI",
+                    "Clerk", "Docker","Nodemailer", "Kubernetes",  "Redis",  "Prisma ORM","Google Cloud Run",
+                    "NGINX","TypeScript",
+                  ]}
+                />
+              </motion.div>
+                
+              
             </motion.div>
           </div>
         </motion.section>
@@ -432,7 +352,7 @@ export default function Page() {
         >
           <div className="container px-4 md:px-6">
             <motion.h2 
-              className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center"
+              className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mb-12 text-center"
               variants={itemVariants}
             >
               Tech Stack
@@ -453,12 +373,12 @@ export default function Page() {
         >
           <div className="container px-4 md:px-6">
             <div className="mx-auto max-w-2xl">
-              <motion.h2 
-                className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center"
+              <motion.h1 
+                className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mb-12 text-center"
                 variants={itemVariants}
               >
                 Get in Touch
-              </motion.h2>
+              </motion.h1>
               <motion.div variants={itemVariants}>
                 <ContactForm />
               </motion.div>

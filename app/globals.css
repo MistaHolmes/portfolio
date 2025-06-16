@@ -133,14 +133,21 @@
   }
 }
 
-@keyframes gradientFlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.halo-background {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  background: radial-gradient(
+    ellipse 70% 40% at center,
+    rgba(111, 111, 111, 0.3) 1%, 
+    rgba(99, 98, 99, 0.1) 30%,
+    transparent 65%
+  );
+}
+
+
+.halo-container {
+  position: relative;
+  width: 100%;
+  overflow: visible;
 }

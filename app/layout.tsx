@@ -3,10 +3,39 @@ import type { Metadata } from "next"
 import "./globals.css"
 import type React from "react"
 
-export const metadata: Metadata = {
-  title: "Abhash Behera - Portfolio",
-  description: "Full stack developer and DevOps Engineer portfolio showcasing projects and skills",
-}
+// app/layout.tsx
+
+export const metadata : Metadata = {
+  title: {
+    default: "Abhash Behera | Full Stack Developer & DevOps Engineer",
+    template: "%s | Abhash Behera", // This will format page titles like "Projects | Abhash Behera"
+  },
+  description: "Explore the work of Abhash Behera, a full stack developer and DevOps engineer.",
+  keywords: ["Abhash Behera", "Portfolio", "Software Engineer", "DevOps", "Next.js"],
+  openGraph: {
+    title: "Abhash Behera | Full Stack Developer & DevOps Engineer",
+    description: "Explore the work of Abhash Behera.",
+    url: "https://portfolio-abhasbehera.vercel.app",
+    siteName: "Abhash Behera Portfolio",
+    images: [
+      {
+        url: "/og-image.png", 
+        width: 1200,
+        height: 630,
+        alt: "Abhash Behera Portfolio Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Abhash Behera | Full Stack Developer",
+    description: "Explore the portfolio of Abhash Behera, a skilled full stack and DevOps engineer.",
+    images: ["/og-image.png"],
+  },
+  metadataBase: new URL("https://portfolio-abhasbehera.vercel.app"),
+};
 
 export default function RootLayout({
   children,
@@ -26,7 +55,8 @@ export default function RootLayout({
               document.documentElement.classList.remove('theme-transition');
             }, 1000);
           `
-        }} />
+        }}
+         />
       </head>
       <body>
         <ThemeProvider 

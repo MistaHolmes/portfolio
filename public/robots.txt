@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://portfolio-abhasbehera.vercel.app/sitemap.xml

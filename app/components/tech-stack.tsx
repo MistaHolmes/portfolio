@@ -11,15 +11,16 @@ const technologies = [
   },
   {
     category: "DevOps",
-    skills: ["Docker", "AWS", "CI/CD","Kubernetes"]
+    skills: ["Docker", "AWS", "GKE", "CI/CD", "Kubernetes" ]
   },
   {
     category: "Database",
-    skills: ["Postgres", "MongoDB", "Redis", "Prisma"]
+    skills: ["Postgres", "MongoDB", "Redis", "Prisma", "Drizzle"]
   },
   {
     category: "Others",
-    skills: ["Git", "Github","Turborepo", "Vercel"]
+    skills: ["Git", "Github","Turborepo", "Vercel","Google Cloud Platform"]
+
   }
 ]
 

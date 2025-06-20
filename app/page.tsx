@@ -318,7 +318,7 @@ export default function Page() {
                 />
               </motion.div>
 
-              <motion.div
+              {/* <motion.div
                 className="w-full max-w-md"
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
@@ -336,7 +336,7 @@ export default function Page() {
                     "NGINX","TypeScript",
                   ]}
                 />
-              </motion.div>
+              </motion.div> */}
                 
               
             </motion.div>

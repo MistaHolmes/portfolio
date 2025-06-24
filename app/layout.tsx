@@ -30,8 +30,8 @@ export const metadata : Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Abhash Behera | Full Stack Developer",
-    description: "Explore the portfolio of Abhash Behera, a skilled full stack and DevOps engineer.",
+    title: "",
+    description: "",
     images: ["/og-image.png"],
   },
   metadataBase: new URL("https://abhasbehera.vercel.app"),

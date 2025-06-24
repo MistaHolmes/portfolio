@@ -15,7 +15,7 @@ export const metadata : Metadata = {
   openGraph: {
     title: "Abhash Behera | Full Stack Developer & DevOps Engineer",
     description: "Explore the work of Abhash Behera.",
-    url: "https://portfolio-abhasbehera.vercel.app",
+    url: "https://abhasbehera.vercel.app",
     siteName: "Abhash Behera Portfolio",
     images: [
       {
@@ -34,7 +34,7 @@ export const metadata : Metadata = {
     description: "Explore the portfolio of Abhash Behera, a skilled full stack and DevOps engineer.",
     images: ["/og-image.png"],
   },
-  metadataBase: new URL("https://portfolio-abhasbehera.vercel.app"),
+  metadataBase: new URL("https://abhasbehera.vercel.app"),
 };
 
 export default function RootLayout({

@@ -318,7 +318,7 @@ export default function Page() {
                 />
               </motion.div>
 
-              {/* <motion.div
+              <motion.div
                 className="w-full max-w-md"
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
@@ -329,14 +329,14 @@ export default function Page() {
                   description="A Minimalist Blogging Platform for Users that just want to share their thoughts and ideas." 
                   image="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/DrafrDockLanding.png"
                   link="https://github.com/MistaHolmes/DraftDock"
-                  // website=""
+                  website="https://404-gold.vercel.app/"
                   tags={[
                     "React",  "Vite","Tailwind","Express" ,"WebSockets", "Google Cloud (GKE)","SwaggerUI",
                     "Clerk", "Docker","Nodemailer", "Kubernetes",  "Redis",  "Prisma ORM","Google Cloud Run",
                     "NGINX","TypeScript",
                   ]}
                 />
-              </motion.div> */}
+              </motion.div>
                 
               
             </motion.div>

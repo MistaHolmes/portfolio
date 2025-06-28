@@ -309,7 +309,7 @@ export default function Page() {
                   description="A grievance redressal system empowering citizens to raise and track issues with municipal authorities."
                   image="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/image%20(2).png"
                   link="https://github.com/MistaHolmes/gms"
-                  website="https://swarajnew.adityahota.online"
+                  website="https://www.swarajdesk.co.in/"
                   tags={[
                     "Next.js", "Prisma ORM", "Express", "WebSockets", "Google Cloud Run",
                     "Swaraj AI", "Vercel", "Docker", "Tailwind", "VertexAI", "Nodemailer","Batoi Insights",

@@ -31,7 +31,7 @@ export default function ContactForm() {
               href="https://x.com/AbhasBehera1" 
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:underline"
+              className="text-primary hover:underline font-medium"
             >
               shoot me a DM on Twitter
             </Link>{" "}

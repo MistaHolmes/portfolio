@@ -27,7 +27,7 @@ export default function Page() {
   }
 
   const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark")
+    setTheme(theme === "light" ? "dark" : "light")
   }
 
   // Animation variants for the waterfall effect
@@ -305,26 +305,6 @@ export default function Page() {
                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
               >
                 <ProjectCard
-                  title="SwarajDesk"
-                  description="A grievance redressal system empowering citizens to raise and track issues with municipal authorities."
-                  image="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/image%20(2).png"
-                  link="https://github.com/MistaHolmes/gms"
-                  website="https://www.swarajdesk.co.in/"
-                  tags={[
-                    "Next.js", "Prisma ORM", "Express", "WebSockets", "Google Cloud Run",
-                    "Swaraj AI", "Vercel", "Docker", "Tailwind", "VertexAI", "Nodemailer","Batoi Insights",
-                    "TurboRepo",
-                  ]}
-                />
-              </motion.div>
-
-              <motion.div
-                className="w-full max-w-md"
-                variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              >
-                <ProjectCard
                   title="DraftDock"
                   description="A Minimalist Blogging Platform for Users that just want to share their thoughts and ideas." 
                   image="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/DrafrDockLanding.png"
@@ -337,8 +317,46 @@ export default function Page() {
                   ]}
                 />
               </motion.div>
+
+              <motion.div
+                className="w-full max-w-md"
+                variants={itemVariants}
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              >
+                <ProjectCard
+                  title="SwarajDesk"
+                  description="A grievance redressal system empowering citizens to raise and track issues with municipal authorities."
+                  image="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/image%20(2).png"
+                  link="https://github.com/MistaHolmes/gms"
+                  website="https://www.swarajdesk.co.in/"
+                  tags={[
+                    "Next.js", "Prisma ORM", "Express", "WebSockets", "Google Cloud Run",
+                    "Swaraj AI", "Vercel", "Docker", "Tailwind", "VertexAI", "Nodemailer","Batoi Insights",
+                    "TurboRepo",
+                  ]}
+                />
+              </motion.div>
                 
-              
+              <motion.div
+                className="w-full max-w-md"
+                variants={itemVariants}
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              >
+                <ProjectCard
+                  title="SwarajDesk Admin Portal"
+                  description="This is the admin portal for SwarajDesk, a grievance redressal system empowering citizens to raise and track issues with municipal authorities."
+                  image="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/uploads/1754017007118_Screenshot 2025-08-01 082636.png"
+                  link="https://github.com/MistaHolmes/gms"
+                  website="https://admin.swarajdesk.co.in/"
+                  tags={[
+                    "Next.js", "Prisma ORM",  "WebSockets", "Redis","GCP-(Cloud Run, GKE)",
+                    "Swaraj AI","Batoi Insights", "Vercel", "Docker", "R2 CDN", "VertexAI","Express"
+                  ]}
+                />
+              </motion.div>
+
             </motion.div>
           </div>
         </motion.section>

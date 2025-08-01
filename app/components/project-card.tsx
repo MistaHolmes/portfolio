@@ -15,14 +15,28 @@ interface ProjectCardProps {
 export default function ProjectCard({ title, description, image, link, website, tags }: ProjectCardProps) {
   return (
     <Card className="overflow-hidden h-full flex flex-col transform transition-transform duration-300 hover:scale-[1.03]">
-      <div className="relative aspect-video">
-        <Image
-          src={image || "/placeholder.svg"}
-          alt={title}
-          fill
-          className="object-cover transition-transform hover:scale-105"
-        />
-      </div>
+      {website ? (
+        <Link href={website} target="_blank" rel="noopener noreferrer">
+          <div className="relative aspect-video">
+            <Image
+              src={image || "/placeholder.svg"}
+              alt={title}
+              fill
+              className="object-cover transition-transform hover:scale-105"
+            />
+          </div>
+        </Link>
+      ) : (
+        <div className="relative aspect-video">
+          <Image
+            src={image || "/placeholder.svg"}
+            alt={title}
+            fill
+            className="object-cover"
+          />
+        </div>
+      )}
+
       <CardContent className="p-4 flex-grow">
         <h3 className="font-semibold text-xl mb-2">{title}</h3>
         <p className="text-sm text-muted-foreground mb-4">{description}</p>

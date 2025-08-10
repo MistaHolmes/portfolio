@@ -101,6 +101,9 @@ export default function Page() {
             <Link href="#contact" className="transition-colors hover:text-foreground/80">
               Contact
             </Link>
+            <Link href="https://medium.com/@mistaholmes" className="transition-colors hover:text-foreground/80">
+              Blogs
+            </Link>
           </nav>
 
           {/* Theme toggle */}

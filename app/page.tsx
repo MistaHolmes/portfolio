@@ -10,7 +10,7 @@ import { TermsDialog } from "./components/term-dialog"
 import { useState, useEffect, useRef } from "react"
 import { useTheme } from "next-themes"
 import { motion, useInView } from "framer-motion"
-import Hero from "@/components/Hero" 
+import Hero from "@/components/Hero"
 import ProjectCard from "./components/project-card"
 
 export default function Page() {
@@ -52,12 +52,12 @@ export default function Page() {
       },
     },
   }
-  
+
   const aboutRef = useRef(null)
   const projectsRef = useRef(null)
   const techStackRef = useRef(null)
   const contactRef = useRef(null)
-  
+
   const aboutInView = useInView(aboutRef, { once: false, amount: 0.2 })
   const projectsInView = useInView(projectsRef, { once: false, amount: 0.2 })
   const techStackInView = useInView(techStackRef, { once: false, amount: 0.2 })
@@ -65,7 +65,7 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-transparent">
-      <motion.header 
+      <motion.header
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -73,7 +73,7 @@ export default function Page() {
       >
         <div className="flex h-14 items-center justify-between">
           {/* Mobile menu button */}
-          <button 
+          <button
             className="md:hidden mr-2 rounded-md p-2 text-foreground hover:bg-muted transition-colors"
             onClick={toggleMobileMenu}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
@@ -107,10 +107,10 @@ export default function Page() {
           </nav>
 
           {/* Theme toggle */}
-          <Button 
-            variant="outline" 
-            size="icon" 
-            className="mr-2" 
+          <Button
+            variant="outline"
+            size="icon"
+            className="mr-2"
             onClick={toggleTheme}
             aria-label="Toggle theme"
           >
@@ -208,20 +208,20 @@ export default function Page() {
           <Hero />
         </div>
 
-        <motion.section 
+        <motion.section
           ref={aboutRef}
-          id="about" 
+          id="about"
           className="py-12 md:py-24 lg:py-32"
           initial="hidden"
           animate={aboutInView ? "visible" : "hidden"}
           variants={containerVariants}
         >
           <div className="container px-4 md:px-6">
-            <motion.div 
+            <motion.div
               className="text-center mb-12"
               variants={itemVariants}
             >
-              <motion.h1 
+              <motion.h1
               className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mb-12 text-center"
               variants={itemVariants}
             >
@@ -232,11 +232,11 @@ export default function Page() {
             </motion.div>
 
             {/* Image + Content Row */}
-            <motion.div 
+            <motion.div
               className="flex flex-col items-center gap-8 md:flex-row md:items-center md:gap-12"
               variants={itemVariants}
             >
-              <motion.div 
+              <motion.div
                 className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border border-border shadow-lg flex-shrink-0"
                 variants={itemVariants}
                 whileHover={{ scale: 1.05 }}
@@ -251,7 +251,7 @@ export default function Page() {
                   className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 dark:opacity-100 opacity-0"
                   priority
                 />
-                
+
                 {/* Light mode image */}
                 <Image
                   src="/pfp_lg.png"
@@ -264,16 +264,16 @@ export default function Page() {
               </motion.div>
 
               {/* Paragraph Content - Consistent with your text styling */}
-              <motion.div 
+              <motion.div
                 className="text-center md:text-left"
                 variants={itemVariants}
               >
                 <p className="text-gray-500 dark:text-gray-200 md:text-lg leading-relaxed font-bold">
-                  Hello! I&apos;m Abhash Behera — a Full Stack Developer and DevOps Engineer with a passion for building robust, scalable web applications 
-                  and ensuring seamless performance in production environments. From developing intuitive frontend interfaces to designing efficient backend systems 
+                  Hello! I&apos;m Abhash Behera — a Full Stack Developer and DevOps Engineer with a passion for building robust, scalable web applications
+                  and ensuring seamless performance in production environments. From developing intuitive frontend interfaces to designing efficient backend systems
                   and streamlining CI/CD pipelines.
                   <br /><br />
-                  Outside of development, stay updated with emerging technologies, and engage with the tech community. 
+                  Outside of development, stay updated with emerging technologies, and engage with the tech community.
                   I value continuous learning, knowledge sharing, and creating tools and platforms that improve productivity and user experience. Let&apos;s build solutions that are smart, stable, and impactful.
                 </p>
               </motion.div>
@@ -281,23 +281,23 @@ export default function Page() {
           </div>
         </motion.section>
 
-        <motion.section 
+        <motion.section
           ref={projectsRef}
-          id="projects" 
+          id="projects"
           className="py-12 md:py-24 lg:py-32"
           initial="hidden"
           animate={projectsInView ? "visible" : "hidden"}
           variants={containerVariants}
         >
           <div className="container px-4 md:px-6 mx-auto">
-            <motion.h1 
+            <motion.h1
               className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mb-12 text-center"
               variants={itemVariants}
             >
               Projects
             </motion.h1>
 
-            <motion.div 
+            <motion.div
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center"
               variants={itemVariants}
             >
@@ -309,10 +309,10 @@ export default function Page() {
               >
                 <ProjectCard
                   title="DraftDock"
-                  description="A Minimalist Blogging Platform for Users that just want to share their thoughts and ideas." 
-                  image="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/DrafrDockLanding.png"
-                  link="https://github.com/MistaHolmes/DraftDock"
-                  website="https://404-gold.vercel.app/"
+                  description="A Minimalist Blogging Platform for Users that just want to share their thoughts and ideas."
+                  image="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/R2-uploader/uploads/1776319270212_Draft.png"
+                  link="https://github.com/MistaHolmes/Techincal-Phase-2/"
+                  website="https://www.draftdocks.in/"
                   tags={[
                     "React",  "Vite","Tailwind","Express" ,"WebSockets", "Google Cloud (GKE)","SwaggerUI",
                     "Clerk", "Docker","Nodemailer", "Kubernetes",  "Redis",  "Prisma ORM","Google Cloud Run",
@@ -330,9 +330,9 @@ export default function Page() {
                 <ProjectCard
                   title="SwarajDesk"
                   description="A grievance redressal system empowering citizens to raise and track issues with municipal authorities."
-                  image="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/image%20(2).png"
-                  link="https://github.com/MistaHolmes/gms"
-                  website="https://www.swarajdesk.co.in/"
+                  image="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/R2-uploader/uploads/1776319541097_swaraj-user.png"
+                  link="https://github.com/MistaHolmes/GSC-Deployment.git"
+                  website="https://gsc-user-fe.abhasbehera.in/"
                   tags={[
                     "Next.js", "Prisma ORM", "Express", "WebSockets", "Google Cloud Run",
                     "Swaraj AI", "Vercel", "Docker", "Tailwind", "VertexAI", "Nodemailer","Batoi Insights",
@@ -340,7 +340,7 @@ export default function Page() {
                   ]}
                 />
               </motion.div>
-                
+
               <motion.div
                 className="w-full max-w-md"
                 variants={itemVariants}
@@ -350,9 +350,9 @@ export default function Page() {
                 <ProjectCard
                   title="SwarajDesk Admin Portal"
                   description="This is the admin portal for SwarajDesk, a grievance redressal system empowering citizens to raise and track issues with municipal authorities."
-                  image="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/uploads/1754017007118_Screenshot 2025-08-01 082636.png"
-                  link="https://github.com/MistaHolmes/gms"
-                  website="https://admin.swarajdesk.co.in/"
+                  image="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/R2-uploader/uploads/1776319273142_swaraj-admin.png"
+                  link="https://github.com/MistaHolmes/GSC-Deployment.git"
+                  website="https://gsc-admin-fe.abhasbehera.in/"
                   tags={[
                     "Next.js", "Prisma ORM",  "WebSockets", "Redis","GCP-(Cloud Run, GKE)",
                     "Swaraj AI","Batoi Insights", "Vercel", "Docker", "R2 CDN", "VertexAI","Express"
@@ -364,7 +364,7 @@ export default function Page() {
           </div>
         </motion.section>
 
-        <motion.section 
+        <motion.section
           ref={techStackRef}
           className="py-12 md:py-24 lg:py-32"
           initial="hidden"
@@ -372,7 +372,7 @@ export default function Page() {
           variants={containerVariants}
         >
           <div className="container px-4 md:px-6">
-            <motion.h2 
+            <motion.h2
               className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mb-12 text-center"
               variants={itemVariants}
             >
@@ -384,9 +384,9 @@ export default function Page() {
           </div>
         </motion.section>
 
-        <motion.section 
+        <motion.section
           ref={contactRef}
-          id="contact" 
+          id="contact"
           className="py-12 md:py-24 lg:py-32"
           initial="hidden"
           animate={contactInView ? "visible" : "hidden"}
@@ -394,7 +394,7 @@ export default function Page() {
         >
           <div className="container px-4 md:px-6">
             <div className="mx-auto max-w-2xl">
-              <motion.h1 
+              <motion.h1
                 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mb-12 text-center"
                 variants={itemVariants}
               >
@@ -408,7 +408,7 @@ export default function Page() {
         </motion.section>
       </main>
 
-      <motion.footer 
+      <motion.footer
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.2, duration: 0.5 }}
@@ -417,7 +417,7 @@ export default function Page() {
         <div className="container flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6">
           <p className="text-1xl text-gray-500 dark:text-gray-400">© 2025 Abhash Behera. All rights reserved.</p>
           <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <TermsDialog /> 
+          <TermsDialog />
           </nav>
         </div>
       </motion.footer>

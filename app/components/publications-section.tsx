@@ -7,19 +7,19 @@ import { motion } from "framer-motion"
 const publications = [
   {
     type: "Patent",
-    title: "Patent details to be added",
-    status: "Draft this entry",
+    title: "An Offline-First, AI-Enabled System for Decentralized Issue Reporting",
+    status: "Published",
     description:
-      "Add the invention title, application number, jurisdiction, filing status, and your contribution.",
+      "Published Indian Patent (No. 202631019043) on an automated routing and immutable resolution tracking system.",
     icon: Landmark,
     href: "https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/R2-uploader/uploads/1778917002358_202631019043-PATENT_APPLICATION_PUBLICATION.pdf",
   },
   {
     type: "Research Paper",
-    title: "Research paper details to be added",
-    status: "Draft this entry",
+    title: "Connection-Aware Autoscaling for Stateful Kubernetes Workloads",
+    status: "Under Review",
     description:
-      "Add the paper title, venue or preprint link, authorship details, abstract focus, and publication status.",
+      "Co-authored a research paper proposing a novel approach to connection-aware autoscaling for stateful Kubernetes workloads.",
     icon: FileText,
   },
 ]
@@ -52,7 +52,7 @@ export default function PublicationsSection() {
           const Icon = item.icon
 
           const card = (
-            <Card className="relative h-full overflow-hidden rounded-lg border-border/70 bg-card/65 p-6 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-foreground/20 hover:shadow-xl">
+            <Card className={`relative h-full overflow-hidden rounded-lg border-border/70 bg-card/65 p-6 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${item.href ? 'hover-border-glow-blue' : 'hover:border-foreground/20'}`}>
                 <div className="absolute right-6 top-6 opacity-10">
                   <ScrollText className="h-24 w-24" />
                 </div>
@@ -62,7 +62,7 @@ export default function PublicationsSection() {
                       <Icon className="h-4 w-4" />
                       {item.type}
                     </span>
-                    <span className="inline-flex items-center gap-2 rounded-md bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary">
+                    <span className={`inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-medium ${item.status === 'Published' ? 'bg-sky-500/10 text-sky-500 dark:text-sky-400' : 'bg-primary/10 text-primary'}`}>
                       <BadgeCheck className="h-4 w-4" />
                       {item.status}
                     </span>

@@ -8,27 +8,27 @@ import PublicationsSection from "./publications-section"
 
 const achievements = [
   {
-    title: "Hackathon Winner",
-    event: "Add hackathon name",
-    year: "2025",
+    title: "Hackathon Wins",
+    event: "Code Relay 4.0 2026 & Srusti TechHack 2025",
+    year: "2025/26",
     description:
-      "Add the winning project, team role, judging theme, and measurable impact here.",
+      "Winner at IIT BBSR's Code Relay 4.0 (2026) and Srusti TechHack (2025).",
     icon: Trophy,
   },
   {
-    title: "Innovation Track",
-    event: "Add competition name",
-    year: "2025",
+    title: "1st Runner-Up",
+    event: "Founder's Renaissance & HackTheStack",
+    year: "2025/26",
     description:
-      "Add the problem statement, shipped prototype, and technologies used during the event.",
+      "Secured 1st Runner-Up at IIIT BBSR's Founder's Renaissance Ideathon (2025) and Best Coder Award at HackTheStack (2026).",
     icon: Medal,
   },
   {
-    title: "Builder Recognition",
-    event: "Add organizer or program",
-    year: "2024",
+    title: "Grand Finalist",
+    event: "Smart India Hackathon & Code Relay 3.0",
+    year: "2025",
     description:
-      "Add the award category, placement, and a short proof point for the recognition.",
+      "Reached the grand finals of the Smart India Hackathon (Govt. of India) and IIT BBSR's Code Relay 3.0.",
     icon: Award,
   },
 ]

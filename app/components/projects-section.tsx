@@ -17,30 +17,9 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "DraftDock",
-    description:
-      "A minimalist blogging platform for writers who want a fast, distraction-free place to publish ideas.",
-    image:
-      "https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/R2-uploader/uploads/1776319270212_Draft.png",
-    link: "https://github.com/MistaHolmes/Techincal-Phase-2/",
-    website: "https://www.draftdocks.in/",
-    tags: [
-      "React",
-      "Vite",
-      "Tailwind",
-      "Express",
-      "WebSockets",
-      "Clerk",
-      "Docker",
-      "Kubernetes",
-      "Redis",
-      "Prisma",
-    ],
-  },
-  {
     title: "SwarajDesk",
     description:
-      "A civic grievance redressal platform that helps citizens raise, track, and resolve municipal issues.",
+      "An AI-powered civic governance platform with offline-first sync, geo-tagged reporting, and multilingual support.",
     image:
       "https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/R2-uploader/uploads/1776319541097_swaraj-user.png",
     link: "https://github.com/MistaHolmes/GSC-Deployment.git",
@@ -50,9 +29,9 @@ const projects: Project[] = [
       "Prisma",
       "Express",
       "WebSockets",
-      "Cloud Run",
-      "Vertex AI",
-      "Docker",
+      "LangGraph",
+      "Redis",
+      "Kubernetes",
       "Turborepo",
     ],
   },
@@ -73,6 +52,58 @@ const projects: Project[] = [
       "Vertex AI",
       "Express",
       "Vercel",
+    ],
+  },
+  {
+    title: "DraftDock",
+    description:
+      "A collaborative AI writing workspace with real-time editing and a browser-based AI coding environment via WebContainers.",
+    image:
+      "https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/R2-uploader/uploads/1776319270212_Draft.png",
+    link: "https://github.com/MistaHolmes/Techincal-Phase-2/",
+    website: "https://www.draftdocks.in/",
+    tags: [
+      "React",
+      "WebContainers",
+      "Tailwind",
+      "Express",
+      "WebSockets",
+      "AWS EC2",
+      "Docker",
+    ],
+  },
+  {
+    title: "Recall: Study Bot",
+    description:
+      "An AI-powered Discord bot with a document-grounded RAG pipeline for study sessions and quiz generation.",
+    image:
+      "https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/R2-uploader/uploads/1778920605317_4f879b14-39f6-4943-bd64-be3330c122cc.png",
+    link: "https://discord.gg/wSETGkV9HY",
+    website: "https://github.com/MistaHolmes/Recall",
+    tags: [
+      "Python",
+      "LangChain",
+      "ChromaDB",
+      "PostgreSQL",
+      "Whisper",
+      "Discord.py",
+      "RAG",
+    ],
+  },
+  {
+    title: "DockStudio",
+    description:
+      "A browser-based AI coding environment using WebContainers that lets users generate and run full-stack apps via natural language.",
+    image:
+      "https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/R2-uploader/uploads/1778919854270_Screenshot%20from%202026-05-16%2013-53-40.png",
+    link: "https://github.com/MistaHolmes/Techincal-Phase-2/",
+    website: "https://www.draftdocks.in/",
+    tags: [
+      "React",
+      "WebContainers",
+      "FastAPI",
+      "Claude AI",
+      "Docker",
     ],
   },
 ]
@@ -121,7 +152,31 @@ function ProjectTimeMachine() {
   const lastUpdateTime = React.useRef(Date.now())
   const touchStartY = React.useRef(0)
   const touchCanScrub = React.useRef(false)
+  const isHovered = React.useRef(false)
   const activeProject = projects[getLoopedIndex(currentIndex, projects.length)]
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      if (!isHovered.current) {
+        setCurrentIndex((prev) => prev + 1)
+      }
+    }, 6000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setCurrentIndex((prev) => prev + 1)
+      window.removeEventListener("scroll", handleScroll)
+    }
+
+    window.addEventListener("scroll", handleScroll, { once: true, passive: true })
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
 
   const visibleCards = React.useMemo(() => {
     const start = currentIndex - BUFFER_SIZE
@@ -223,6 +278,8 @@ function ProjectTimeMachine() {
     <div
       ref={containerRef}
       className="mx-auto grid w-full max-w-[92rem] items-center gap-8 lg:grid-cols-[minmax(0,1.9fr)_minmax(320px,0.85fr)]"
+      onMouseEnter={() => { isHovered.current = true }}
+      onMouseLeave={() => { isHovered.current = false }}
     >
       <div
         ref={galleryRef}

@@ -387,3 +387,18 @@
     animation-play-state: paused;
   }
 }
+
+@keyframes border-glow-blue {
+  0%, 100% {
+    border-color: rgba(56, 189, 248, 0.4);
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+  }
+  50% {
+    border-color: rgba(56, 189, 248, 1);
+    box-shadow: 0 0 24px rgba(56, 189, 248, 0.5);
+  }
+}
+
+.hover-border-glow-blue:hover {
+  animation: border-glow-blue 2s ease-in-out infinite;
+}

@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import ContactForm from "./contact-form"
 import { Card } from "@/components/ui/card"
-import { Github, Linkedin, Twitter, Mail } from "lucide-react"
+import { Github, Linkedin, Twitter } from "lucide-react"
 import Image from "next/image"
 
 const itemVariants = {

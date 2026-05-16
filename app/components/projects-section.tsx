@@ -77,7 +77,7 @@ const projects: Project[] = [
     description:
       "An AI-powered Discord bot with a document-grounded RAG pipeline for study sessions and quiz generation.",
     image:
-      "https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/R2-uploader/uploads/1778920605317_4f879b14-39f6-4943-bd64-be3330c122cc.png",
+      "https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/R2-uploader/uploads/1778925590843_4f82d8a1-a064-42c2-be5f-dcada18e4197.png",
     link: "https://discord.gg/wSETGkV9HY",
     website: "https://github.com/MistaHolmes/Recall",
     tags: [

@@ -60,16 +60,10 @@ export default function AboutSection() {
 
         <div className="mx-auto max-w-3xl text-center lg:text-left">
           <p className="text-lg leading-8 text-foreground/75">
-            I&apos;m Abhash Behera, a Full Stack Developer and DevOps Engineer 
-            focused on building robust web applications, production-ready 
-            backend systems, and cloud-native delivery pipelines. I am currently pursuing my 
-            B.Tech in Computer Science and Engineering at C.V. Raman Global University (CGPA: 8.06).
+            I&apos;m Abhash Behera, a developer with a strong interest in AI, systems, automation, and software engineering. I enjoy building scalable and practical solutions while understanding how things work beyond the surface level. My approach to technology is rooted in curiosity, analytical thinking, and creating products that are both efficient and reliable.
           </p>
           <p className="mt-5 text-lg leading-8 text-foreground/75">
-            Recently, I worked as a Software Engineering Intern at Batoi Systems, 
-            where I helped productionize hackathon-winning prototypes and integrated 
-            insight workflows into their platform. I enjoy turning rough ideas into 
-            stable systems: clean interfaces, efficient APIs, and observable deployments.
+            Beyond development, I&apos;m interested in psychology, strategy, economics, and the way complex systems behave and evolve. I value continuous learning, adaptability, and thoughtful problem-solving, and I enjoy turning ideas into meaningful, well-executed projects.
           </p>
         </div>
       </motion.div>

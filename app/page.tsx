@@ -142,7 +142,7 @@ export default function Page() {
           {/* Resume button */}
           <Button variant="outline" asChild>
             <a
-              href="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/Resume.pdf"
+              href="https://r2.abhashbehera.online/Abhash_Behera_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="no-underline"

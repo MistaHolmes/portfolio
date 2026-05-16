@@ -13,6 +13,7 @@ import AchievementsSection from "./components/achievements-section"
 import ContactSection from "./components/contact-section"
 import MouseEffects from "./components/mouse-effects"
 import ProjectsSection from "./components/projects-section"
+import ExperienceSection from "./components/experience-section"
 import ScrollProgress from "./components/scroll-progress"
 
 export default function Page() {
@@ -82,7 +83,7 @@ export default function Page() {
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="sticky top-0 z-50 w-full border-b bg-transparent/95 backdrop-blur supports-[backdrop-filter]:bg-transparent/60"
+        className="sticky top-0 z-[9999] w-full border-b bg-transparent/95 backdrop-blur supports-[backdrop-filter]:bg-transparent/60"
       >
         <div className="flex h-16 items-center justify-between text-lg">
           {/* Mobile menu button */}
@@ -107,6 +108,9 @@ export default function Page() {
           <nav className="hidden md:flex flex-1 justify-center items-center space-x-7 text-lg font-medium">
             <Link href="#about" onClick={(event) => goToSection(event, "about")} className="transition-colors hover:text-foreground/80">
               About
+            </Link>
+            <Link href="#experience" onClick={(event) => goToSection(event, "experience")} className="transition-colors hover:text-foreground/80">
+              Experience
             </Link>
             <Link href="#projects" onClick={(event) => goToSection(event, "projects")} className="transition-colors hover:text-foreground/80">
               Projects
@@ -181,6 +185,9 @@ export default function Page() {
                 <Link href="#about" onClick={(event) => goToSection(event, "about")} className="hover:text-foreground/80">
                   About
                 </Link>
+                <Link href="#experience" onClick={(event) => goToSection(event, "experience")} className="hover:text-foreground/80">
+                  Experience
+                </Link>
                 <Link href="#projects" onClick={(event) => goToSection(event, "projects")} className="hover:text-foreground/80">
                   Projects
                 </Link>
@@ -238,6 +245,7 @@ export default function Page() {
               transition={{ duration: 0.45, ease: "easeOut" }}
             >
               <AboutSection />
+              <ExperienceSection />
               <ProjectsSection />
               <AchievementsSection />
               <TechStack />

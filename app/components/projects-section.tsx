@@ -160,7 +160,7 @@ function ProjectTimeMachine() {
       if (!isHovered.current) {
         setCurrentIndex((prev) => prev + 1)
       }
-    }, 6000)
+    }, 5000)
 
     return () => clearInterval(interval)
   }, [])

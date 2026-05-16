@@ -248,24 +248,7 @@ export default function Page() {
         </AnimatePresence>
       </main>
 
-      <AnimatePresence>
-        {contentReady && (
-          <motion.footer
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 24 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="border-t-2 border-amber-50"
-          >
-            <div className="container flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6">
-              <p className="text-1xl text-gray-500 dark:text-gray-400">© 2025 Abhash Behera. All rights reserved.</p>
-              <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-              <TermsDialog />
-              </nav>
-            </div>
-          </motion.footer>
-        )}
-      </AnimatePresence>
+
     </div>
   )
 }

@@ -76,7 +76,7 @@ export default function Page() {
 
   return (
     <div className="relative isolate min-h-screen bg-transparent">
-      <ScrollProgress />
+      {contentReady && <ScrollProgress />}
       <MouseEffects />
       <motion.header
         initial={{ opacity: 0, y: -50 }}

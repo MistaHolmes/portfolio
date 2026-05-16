@@ -117,10 +117,66 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+    scrollbar-color: rgba(68, 68, 68, 0.86) transparent;
+  }
   body {
     margin: 0;
     padding: 0;
+    font-family:
+      "Inter",
+      "Aptos",
+      "SF Pro Display",
+      "Segoe UI",
+      system-ui,
+      sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     @apply bg-background text-foreground;
+    background-color: var(--background);
+    background-image:
+      radial-gradient(ellipse 70% 42% at 50% 8%, rgba(72, 72, 78, 0.22), transparent 68%),
+      radial-gradient(ellipse 56% 38% at 18% 58%, rgba(58, 58, 64, 0.14), transparent 64%),
+      radial-gradient(ellipse 48% 36% at 86% 76%, rgba(70, 70, 76, 0.12), transparent 66%);
+    background-attachment: fixed;
+  }
+  h1,
+  h2,
+  h3 {
+    letter-spacing: 0;
+  }
+  ::selection {
+    background: rgba(14, 165, 233, 0.24);
+  }
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+    background: transparent;
+  }
+  ::-webkit-scrollbar-button,
+  ::-webkit-scrollbar-button:single-button,
+  ::-webkit-scrollbar-button:vertical:start:decrement,
+  ::-webkit-scrollbar-button:vertical:end:increment,
+  ::-webkit-scrollbar-button:horizontal:start:decrement,
+  ::-webkit-scrollbar-button:horizontal:end:increment {
+    -webkit-appearance: none;
+    display: none;
+    width: 0;
+    height: 0;
+    background: transparent;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: rgba(68, 68, 68, 0.86);
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(82, 82, 82, 0.96);
+    background-clip: content-box;
   }
 }
 
@@ -150,4 +206,184 @@
   position: relative;
   width: 100%;
   overflow: visible;
+}
+
+.section-spacing {
+  padding: 4.5rem 0;
+}
+
+.section-heading {
+  margin: 0 auto 2.5rem;
+  max-width: 52rem;
+  text-align: center;
+}
+
+.section-heading h2 {
+  margin-top: 0.65rem;
+  font-size: clamp(2rem, 3.8vw, 3.35rem);
+  font-weight: 720;
+  line-height: 1;
+}
+
+.section-heading p {
+  margin: 1rem auto 0;
+  max-width: 46rem;
+  color: color-mix(in oklab, var(--foreground) 70%, transparent);
+  font-size: clamp(1.08rem, 1.5vw, 1.22rem);
+  line-height: 1.7;
+}
+
+.marquee-shell {
+  position: relative;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 2rem;
+  padding: 1rem 0;
+  animation: marquee-left 22s linear infinite;
+}
+
+.marquee-reverse {
+  animation-name: marquee-right;
+}
+
+.marquee-pill {
+  display: inline-flex;
+  min-height: 2.8rem;
+  align-items: center;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: color-mix(in oklab, var(--foreground) 86%, transparent);
+  font-size: clamp(1.08rem, 1.8vw, 1.45rem);
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.ambient-hue {
+  --ambient-x: 50%;
+  --ambient-y: 45%;
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: -20;
+  background:
+    radial-gradient(
+      circle 280px at var(--ambient-x) var(--ambient-y),
+      rgba(25, 56, 154, 0.28) 0%,
+      rgba(25, 56, 154, 0.16) 34%,
+      rgba(25, 56, 154, 0.055) 58%,
+      transparent 78%
+    );
+  filter: blur(12px);
+  opacity: 0.82;
+}
+
+.hero-stars {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 0;
+  width: min(92vw, 980px);
+  height: min(58vh, 520px);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  opacity: 0.46;
+  background-image:
+    radial-gradient(circle at 12% 22%, rgba(255, 255, 255, 0.68) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 32% 12%, rgba(255, 255, 255, 0.45) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 68% 18%, rgba(255, 255, 255, 0.58) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 86% 34%, rgba(255, 255, 255, 0.42) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 22% 62%, rgba(255, 255, 255, 0.38) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 76% 70%, rgba(255, 255, 255, 0.52) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 48% 82%, rgba(255, 255, 255, 0.34) 0 1px, transparent 1.5px);
+  background-size:
+    220px 220px,
+    260px 260px,
+    300px 300px,
+    240px 240px,
+    280px 280px,
+    320px 320px,
+    250px 250px;
+  mask-image: radial-gradient(ellipse at center, #000 0%, #000 34%, rgba(0, 0, 0, 0.55) 58%, transparent 78%);
+  animation: star-twinkle 5.5s ease-in-out infinite alternate;
+}
+
+.cursor-follower {
+  pointer-events: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  height: 0.65rem;
+  width: 0.65rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--foreground) 78%, transparent);
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.45);
+  mix-blend-mode: difference;
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes star-twinkle {
+  from {
+    opacity: 0.26;
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  to {
+    opacity: 0.52;
+    transform: translate(-50%, -50%) translateY(-4px);
+  }
+}
+
+@media (max-width: 768px) {
+  .section-spacing {
+    padding: 3.5rem 0;
+  }
+
+  .section-heading {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-follower {
+    display: none;
+  }
+
+  .ambient-hue {
+    display: none;
+  }
+
+  .hero-stars {
+    animation: none;
+  }
+
+  .marquee-track {
+    animation-play-state: paused;
+  }
 }

@@ -1,47 +1,186 @@
+"use client"
+
+/* eslint-disable @next/next/no-img-element */
 import { Card } from "@/components/ui/card"
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
 
 const technologies = [
   {
+    category: "Languages",
+    skills: [
+      { name: "JavaScript", logo: "https://cdn.simpleicons.org/javascript/F7DF1E" },
+      { name: "TypeScript", logo: "https://cdn.simpleicons.org/typescript/3178C6" },
+      { name: "Python", logo: "https://cdn.simpleicons.org/python/3776AB" },
+      { name: "C++", logo: "https://cdn.simpleicons.org/cplusplus/00599C" },
+      { name: "Go", logo: "https://cdn.simpleicons.org/go/00ADD8" },
+    ],
+  },
+  {
     category: "Frontend",
-    skills: ["React", "Next.js", "TypeScript", "TailwindCSS", "JavaScript", "React Native", "Recoil"]
+    skills: [
+      { name: "React", logo: "https://cdn.simpleicons.org/react/61DAFB" },
+      { name: "Next.js", logo: "https://cdn.simpleicons.org/nextdotjs/000000" },
+      { name: "TypeScript", logo: "https://cdn.simpleicons.org/typescript/3178C6" },
+      { name: "Tailwind CSS", logo: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
+      { name: "JavaScript", logo: "https://cdn.simpleicons.org/javascript/F7DF1E" },
+      { name: "React Native", logo: "https://cdn.simpleicons.org/react/61DAFB" },
+      { name: "Recoil", logo: "https://cdn.simpleicons.org/recoil/3578E5" },
+    ],
   },
   {
     category: "Backend",
-    skills: ["Node.js", "Express", "Hono", "WebSockets", "WebRTC", "Pub/Subs"]
+    skills: [
+      { name: "Node.js", logo: "https://cdn.simpleicons.org/nodedotjs/5FA04E" },
+      { name: "Express", logo: "https://cdn.simpleicons.org/express/000000" },
+      { name: "Hono", logo: "https://cdn.simpleicons.org/hono/E36002" },
+      { name: "WebSockets", logo: "https://cdn.simpleicons.org/websocket/010101" },
+      { name: "WebRTC", logo: "https://cdn.simpleicons.org/webrtc/333333" },
+      { name: "Pub/Sub", logo: "https://cdn.simpleicons.org/googlecloud/4285F4" },
+    ],
   },
   {
     category: "DevOps",
-    skills: ["Docker", "AWS", "GKE", "CI/CD", "Kubernetes" ]
+    skills: [
+      { name: "Docker", logo: "https://cdn.simpleicons.org/docker/2496ED" },
+      { name: "AWS", logo: "https://cdn.simpleicons.org/amazonwebservices/FF9900" },
+      { name: "GKE", logo: "https://cdn.simpleicons.org/googlecloud/4285F4" },
+      { name: "CI/CD", logo: "https://cdn.simpleicons.org/githubactions/2088FF" },
+      { name: "Kubernetes", logo: "https://cdn.simpleicons.org/kubernetes/326CE5" },
+    ],
   },
   {
     category: "Database",
-    skills: ["Postgres", "MongoDB", "Redis", "Prisma", "Drizzle"]
+    skills: [
+      { name: "Postgres", logo: "https://cdn.simpleicons.org/postgresql/4169E1" },
+      { name: "MongoDB", logo: "https://cdn.simpleicons.org/mongodb/47A248" },
+      { name: "Redis", logo: "https://cdn.simpleicons.org/redis/FF4438" },
+      { name: "Prisma", logo: "https://cdn.simpleicons.org/prisma/2D3748" },
+      { name: "Drizzle", logo: "https://cdn.simpleicons.org/drizzle/C5F74F" },
+    ],
   },
   {
     category: "Others",
-    skills: ["Git", "Github","Turborepo", "Vercel","Google Cloud Platform"]
-
-  }
+    skills: [
+      { name: "Git", logo: "https://cdn.simpleicons.org/git/F05032" },
+      { name: "GitHub", logo: "https://cdn.simpleicons.org/github/181717" },
+      { name: "Turborepo", logo: "https://cdn.simpleicons.org/turborepo/EF4444" },
+      { name: "Vercel", logo: "https://cdn.simpleicons.org/vercel/000000" },
+      { name: "Google Cloud", logo: "https://cdn.simpleicons.org/googlecloud/4285F4" },
+    ],
+  },
 ]
 
-export default function TechStack() {
+const marqueeTop = [
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Node.js",
+  "Express",
+  "WebSockets",
+  "Docker",
+  "Kubernetes",
+  "Google Cloud",
+  "Prisma",
+  "Redis",
+  "Postgres",
+]
+
+const marqueeBottom = [
+  "Tailwind CSS",
+  "Vite",
+  "CI/CD",
+  "Cloud Run",
+  "GKE",
+  "Turborepo",
+  "MongoDB",
+  "React Native",
+  "Vertex AI",
+  "Nodemailer",
+  "R2 CDN",
+  "Vercel",
+]
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 100, damping: 18 },
+  },
+}
+
+function MarqueeRow({
+  items,
+  reverse = false,
+}: {
+  items: string[]
+  reverse?: boolean
+}) {
+  const repeatedItems = [...items, ...items]
+
   return (
-    <div className="grid gap-6 md:grid-cols-2 ">
-      {technologies.map((tech) => (
-        <Card key={tech.category} className="p-6 bg-primary/3">
-          <h3 className="text-lg font-semibold mb-4">{tech.category}</h3>
-          <div className="flex flex-wrap gap-2">
-            {tech.skills.map((skill) => (
-              <span
-                key={skill}
-                className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-sm font-medium text-primary ring-1 ring-inset ring-primary/20"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </Card>
-      ))}
+    <div className="marquee-shell">
+      <div className={reverse ? "marquee-track marquee-reverse" : "marquee-track"}>
+        {repeatedItems.map((item, index) => (
+          <span key={`${item}-${index}`} className="marquee-pill">
+            {item}
+          </span>
+        ))}
+      </div>
     </div>
+  )
+}
+
+export default function TechStack() {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: false, amount: 0.15 })
+
+  return (
+    <motion.section
+      ref={ref}
+      id="tech-stack"
+      className="section-spacing"
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+    >
+      <motion.div className="section-heading" variants={itemVariants}>
+        <h2>Tech Stack</h2>
+        <p>Frontend, backend, cloud, and data tools I use to build production systems.</p>
+      </motion.div>
+
+      <motion.div className="mb-10 space-y-3" variants={itemVariants}>
+        <MarqueeRow items={marqueeTop} />
+        <MarqueeRow items={marqueeBottom} reverse />
+      </motion.div>
+
+      <div className="grid gap-5 md:grid-cols-2">
+        {technologies.map((tech) => (
+          <motion.div key={tech.category} variants={itemVariants}>
+            <Card className="h-full rounded-lg border-border/70 bg-neutral-500/10 p-6 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-foreground/20 hover:bg-neutral-500/14 hover:shadow-xl">
+              <h3 className="mb-5 text-xl font-semibold">{tech.category}</h3>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {tech.skills.map((skill) => (
+                  <span
+                    key={skill.name}
+                    className="inline-flex min-h-12 items-center gap-3 rounded-md border border-border/70 bg-neutral-500/12 px-3 py-2 text-base font-medium text-foreground/85"
+                  >
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center">
+                      <img
+                        src={skill.logo}
+                        alt={`${skill.name} logo`}
+                        className="h-full w-full object-contain"
+                        loading="lazy"
+                      />
+                    </span>
+                    {skill.name}
+                  </span>
+                ))}
+              </div>
+            </Card>
+          </motion.div>
+        ))}
+      </div>
+    </motion.section>
   )
 }

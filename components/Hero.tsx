@@ -38,16 +38,24 @@ export default function Hero() {
   if (!mounted) return null
 
   const scrollToAbout = () => {
-    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
+    const aboutSection = document.getElementById("about")
+
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: "smooth" })
+      return
+    }
+
+    window.dispatchEvent(new CustomEvent("portfolio:reveal-content", { detail: "about" }))
   }
 
   return (
     <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 ">
+      <div className="hero-stars" aria-hidden="true" />
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="text-center max-w-3xl mx-auto space-y-5"
+        className="relative z-10 text-center max-w-3xl mx-auto space-y-5"
       >
         <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-center">
           <motion.span 
@@ -110,7 +118,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-8 md:bottom-22"
+        className="absolute bottom-8 z-10 md:bottom-22"
       >
         <Button variant="ghost" size="icon" onClick={scrollToAbout} className="animate-bounce">
           <ArrowDown className="h-6 w-6" />

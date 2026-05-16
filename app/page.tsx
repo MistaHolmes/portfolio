@@ -3,23 +3,57 @@
 import { Button } from "@/components/ui/button"
 import { Menu, X, Moon, Sun } from "lucide-react"
 import Link from "next/link"
-import ContactForm from "./components/contact-form"
 import TechStack from "./components/tech-stack"
-import Image from "next/image"
 import { TermsDialog } from "./components/term-dialog"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, type MouseEvent } from "react"
 import { useTheme } from "next-themes"
-import { motion, useInView } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import Hero from "@/components/Hero"
-import ProjectCard from "./components/project-card"
+import AboutSection from "./components/about-section"
+import AchievementsSection from "./components/achievements-section"
+import ContactSection from "./components/contact-section"
+import MouseEffects from "./components/mouse-effects"
+import ProjectsSection from "./components/projects-section"
+import ScrollProgress from "./components/scroll-progress"
 
 export default function Page() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const [contentReady, setContentReady] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (window.location.hash) {
+      setContentReady(true)
+      return
+    }
+
+    const revealContent = () => setContentReady(true)
+    const revealFromHero = (event: Event) => {
+      const sectionId = (event as CustomEvent<string>).detail
+      setContentReady(true)
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
+        })
+      })
+    }
+
+    window.addEventListener("wheel", revealContent, { once: true, passive: true })
+    window.addEventListener("touchmove", revealContent, { once: true, passive: true })
+    window.addEventListener("keydown", revealContent, { once: true })
+    window.addEventListener("portfolio:reveal-content", revealFromHero)
+
+    return () => {
+      window.removeEventListener("wheel", revealContent)
+      window.removeEventListener("touchmove", revealContent)
+      window.removeEventListener("keydown", revealContent)
+      window.removeEventListener("portfolio:reveal-content", revealFromHero)
+    }
   }, [])
 
   const toggleMobileMenu = () => {
@@ -30,48 +64,28 @@ export default function Page() {
     setTheme(theme === "light" ? "dark" : "light")
   }
 
-  // Animation variants for the waterfall effect
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
+  const goToSection = (event: MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    event.preventDefault()
+    setContentReady(true)
+    setMobileMenuOpen(false)
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
+      })
+    })
   }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: -50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-      },
-    },
-  }
-
-  const aboutRef = useRef(null)
-  const projectsRef = useRef(null)
-  const techStackRef = useRef(null)
-  const contactRef = useRef(null)
-
-  const aboutInView = useInView(aboutRef, { once: false, amount: 0.2 })
-  const projectsInView = useInView(projectsRef, { once: false, amount: 0.2 })
-  const techStackInView = useInView(techStackRef, { once: false, amount: 0.2 })
-  const contactInView = useInView(contactRef, { once: false, amount: 0.2 })
 
   return (
-    <div className="min-h-screen bg-transparent">
+    <div className="relative isolate min-h-screen bg-transparent">
+      <ScrollProgress />
+      <MouseEffects />
       <motion.header
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="sticky top-0 z-50 w-full border-b bg-transparent/95 backdrop-blur supports-[backdrop-filter]:bg-transparent/60"
       >
-        <div className="flex h-14 items-center justify-between">
+        <div className="flex h-16 items-center justify-between text-lg">
           {/* Mobile menu button */}
           <button
             className="md:hidden mr-2 rounded-md p-2 text-foreground hover:bg-muted transition-colors"
@@ -91,14 +105,17 @@ export default function Page() {
           </Link>
 
           {/* Desktop navigation */}
-          <nav className="hidden md:flex flex-1 justify-center items-center space-x-6 text-m font-medium">
-            <Link href="#about" className="transition-colors hover:text-foreground/80">
+          <nav className="hidden md:flex flex-1 justify-center items-center space-x-7 text-lg font-medium">
+            <Link href="#about" onClick={(event) => goToSection(event, "about")} className="transition-colors hover:text-foreground/80">
               About
             </Link>
-            <Link href="#projects" className="transition-colors hover:text-foreground/80">
+            <Link href="#projects" onClick={(event) => goToSection(event, "projects")} className="transition-colors hover:text-foreground/80">
               Projects
             </Link>
-            <Link href="#contact" className="transition-colors hover:text-foreground/80">
+            <Link href="#achievements" onClick={(event) => goToSection(event, "achievements")} className="transition-colors hover:text-foreground/80">
+              Achievements
+            </Link>
+            <Link href="#contact" onClick={(event) => goToSection(event, "contact")} className="transition-colors hover:text-foreground/80">
               Contact
             </Link>
             <Link href="https://medium.com/@mistaholmes" className="transition-colors hover:text-foreground/80">
@@ -161,14 +178,20 @@ export default function Page() {
               </button>
 
               {/* Nav links */}
-              <nav className="flex flex-col space-y-4 text-lg font-medium">
-                <Link href="#about" onClick={() => setMobileMenuOpen(false)} className="hover:text-foreground/80">
+              <nav className="flex flex-col space-y-4 text-xl font-medium">
+                <Link href="#about" onClick={(event) => goToSection(event, "about")} className="hover:text-foreground/80">
                   About
                 </Link>
-                <Link href="#projects" onClick={() => setMobileMenuOpen(false)} className="hover:text-foreground/80">
+                <Link href="#projects" onClick={(event) => goToSection(event, "projects")} className="hover:text-foreground/80">
                   Projects
                 </Link>
-                <Link href="#contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-foreground/80">
+                <Link href="#achievements" onClick={(event) => goToSection(event, "achievements")} className="hover:text-foreground/80">
+                  Achievements
+                </Link>
+                <Link href="#research" onClick={(event) => goToSection(event, "research")} className="hover:text-foreground/80">
+                  Research
+                </Link>
+                <Link href="#contact" onClick={(event) => goToSection(event, "contact")} className="hover:text-foreground/80">
                   Contact
                 </Link>
                 <Button
@@ -202,225 +225,47 @@ export default function Page() {
         )}
       </motion.header>
 
-      <main className="container px-4 md:px-6">
+      <main className="px-4 md:px-6">
         <div className="halo-container">
           <div className="halo-background" />
           <Hero />
         </div>
-
-        <motion.section
-          ref={aboutRef}
-          id="about"
-          className="py-12 md:py-24 lg:py-32"
-          initial="hidden"
-          animate={aboutInView ? "visible" : "hidden"}
-          variants={containerVariants}
-        >
-          <div className="container px-4 md:px-6">
+        <AnimatePresence>
+          {contentReady && (
             <motion.div
-              className="text-center mb-12"
-              variants={itemVariants}
+              initial={{ opacity: 0, y: 32 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 24 }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
             >
-              <motion.h1
-              className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mb-12 text-center"
-              variants={itemVariants}
-            >
-              About Me
-            </motion.h1>
-
-              {/* Add Experience Here */}
-            </motion.div>
-
-            {/* Image + Content Row */}
-            <motion.div
-              className="flex flex-col items-center gap-8 md:flex-row md:items-center md:gap-12"
-              variants={itemVariants}
-            >
-              <motion.div
-                className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border border-border shadow-lg flex-shrink-0"
-                variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              >
-                {/* Dark mode image */}
-                <Image
-                  src="/pfp.png"
-                  alt="Abhash Behera"
-                  width={320}
-                  height={320}
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 dark:opacity-100 opacity-0"
-                  priority
-                />
-
-                {/* Light mode image */}
-                <Image
-                  src="/pfp_lg.png"
-                  alt="Abhash Behera"
-                  width={320}
-                  height={320}
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 dark:opacity-0 opacity-100"
-                  priority
-                />
-              </motion.div>
-
-              {/* Paragraph Content - Consistent with your text styling */}
-              <motion.div
-                className="text-center md:text-left"
-                variants={itemVariants}
-              >
-                <p className="text-gray-500 dark:text-gray-200 md:text-lg leading-relaxed font-bold">
-                  Hello! I&apos;m Abhash Behera — a Full Stack Developer and DevOps Engineer with a passion for building robust, scalable web applications
-                  and ensuring seamless performance in production environments. From developing intuitive frontend interfaces to designing efficient backend systems
-                  and streamlining CI/CD pipelines.
-                  <br /><br />
-                  Outside of development, stay updated with emerging technologies, and engage with the tech community.
-                  I value continuous learning, knowledge sharing, and creating tools and platforms that improve productivity and user experience. Let&apos;s build solutions that are smart, stable, and impactful.
-                </p>
-              </motion.div>
-            </motion.div>
-          </div>
-        </motion.section>
-
-        <motion.section
-          ref={projectsRef}
-          id="projects"
-          className="py-12 md:py-24 lg:py-32"
-          initial="hidden"
-          animate={projectsInView ? "visible" : "hidden"}
-          variants={containerVariants}
-        >
-          <div className="container px-4 md:px-6 mx-auto">
-            <motion.h1
-              className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mb-12 text-center"
-              variants={itemVariants}
-            >
-              Projects
-            </motion.h1>
-
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center"
-              variants={itemVariants}
-            >
-              <motion.div
-                className="w-full max-w-md"
-                variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              >
-                <ProjectCard
-                  title="DraftDock"
-                  description="A Minimalist Blogging Platform for Users that just want to share their thoughts and ideas."
-                  image="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/R2-uploader/uploads/1776319270212_Draft.png"
-                  link="https://github.com/MistaHolmes/Techincal-Phase-2/"
-                  website="https://www.draftdocks.in/"
-                  tags={[
-                    "React",  "Vite","Tailwind","Express" ,"WebSockets", "Google Cloud (GKE)","SwaggerUI",
-                    "Clerk", "Docker","Nodemailer", "Kubernetes",  "Redis",  "Prisma ORM","Google Cloud Run",
-                    "NGINX","TypeScript",
-                  ]}
-                />
-              </motion.div>
-
-              <motion.div
-                className="w-full max-w-md"
-                variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              >
-                <ProjectCard
-                  title="SwarajDesk"
-                  description="A grievance redressal system empowering citizens to raise and track issues with municipal authorities."
-                  image="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/R2-uploader/uploads/1776319541097_swaraj-user.png"
-                  link="https://github.com/MistaHolmes/GSC-Deployment.git"
-                  website="https://gsc-user-fe.abhasbehera.in/"
-                  tags={[
-                    "Next.js", "Prisma ORM", "Express", "WebSockets", "Google Cloud Run",
-                    "Swaraj AI", "Vercel", "Docker", "Tailwind", "VertexAI", "Nodemailer","Batoi Insights",
-                    "TurboRepo",
-                  ]}
-                />
-              </motion.div>
-
-              <motion.div
-                className="w-full max-w-md"
-                variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              >
-                <ProjectCard
-                  title="SwarajDesk Admin Portal"
-                  description="This is the admin portal for SwarajDesk, a grievance redressal system empowering citizens to raise and track issues with municipal authorities."
-                  image="https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/R2-uploader/uploads/1776319273142_swaraj-admin.png"
-                  link="https://github.com/MistaHolmes/GSC-Deployment.git"
-                  website="https://gsc-admin-fe.abhasbehera.in/"
-                  tags={[
-                    "Next.js", "Prisma ORM",  "WebSockets", "Redis","GCP-(Cloud Run, GKE)",
-                    "Swaraj AI","Batoi Insights", "Vercel", "Docker", "R2 CDN", "VertexAI","Express"
-                  ]}
-                />
-              </motion.div>
-
-            </motion.div>
-          </div>
-        </motion.section>
-
-        <motion.section
-          ref={techStackRef}
-          className="py-12 md:py-24 lg:py-32"
-          initial="hidden"
-          animate={techStackInView ? "visible" : "hidden"}
-          variants={containerVariants}
-        >
-          <div className="container px-4 md:px-6">
-            <motion.h2
-              className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mb-12 text-center"
-              variants={itemVariants}
-            >
-              Tech Stack
-            </motion.h2>
-            <motion.div variants={itemVariants}>
+              <AboutSection />
+              <ProjectsSection />
+              <AchievementsSection />
               <TechStack />
+              <ContactSection />
             </motion.div>
-          </div>
-        </motion.section>
-
-        <motion.section
-          ref={contactRef}
-          id="contact"
-          className="py-12 md:py-24 lg:py-32"
-          initial="hidden"
-          animate={contactInView ? "visible" : "hidden"}
-          variants={containerVariants}
-        >
-          <div className="container px-4 md:px-6">
-            <div className="mx-auto max-w-2xl">
-              <motion.h1
-                className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mb-12 text-center"
-                variants={itemVariants}
-              >
-                Get in Touch
-              </motion.h1>
-              <motion.div variants={itemVariants}>
-                <ContactForm />
-              </motion.div>
-            </div>
-          </div>
-        </motion.section>
+          )}
+        </AnimatePresence>
       </main>
 
-      <motion.footer
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2, duration: 0.5 }}
-        className="border-t-2 border-amber-50"
-      >
-        <div className="container flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6">
-          <p className="text-1xl text-gray-500 dark:text-gray-400">© 2025 Abhash Behera. All rights reserved.</p>
-          <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <TermsDialog />
-          </nav>
-        </div>
-      </motion.footer>
+      <AnimatePresence>
+        {contentReady && (
+          <motion.footer
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 24 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="border-t-2 border-amber-50"
+          >
+            <div className="container flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6">
+              <p className="text-1xl text-gray-500 dark:text-gray-400">© 2025 Abhash Behera. All rights reserved.</p>
+              <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+              <TermsDialog />
+              </nav>
+            </div>
+          </motion.footer>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

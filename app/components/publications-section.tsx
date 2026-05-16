@@ -1,17 +1,17 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import { BadgeCheck, FileText, Landmark, ScrollText } from "lucide-react"
+import { BadgeCheck, FileText } from "lucide-react"
 import { motion } from "framer-motion"
 
 const publications = [
   {
     type: "Patent",
     title: "An Offline-First, AI-Enabled System for Decentralized Issue Reporting",
-    status: "Published",
+    status: "View PDF",
     description:
       "Published Indian Patent (No. 202631019043) on an automated routing and immutable resolution tracking system.",
-    icon: Landmark,
+    // icon: Landmark,
     href: "https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/R2-uploader/uploads/1778917002358_202631019043-PATENT_APPLICATION_PUBLICATION.pdf",
   },
   {
@@ -20,7 +20,7 @@ const publications = [
     status: "Under Review",
     description:
       "Co-authored a research paper proposing a novel approach to connection-aware autoscaling for stateful Kubernetes workloads.",
-    icon: FileText,
+    // icon: FileText,
   },
 ]
 
@@ -49,30 +49,27 @@ export default function PublicationsSection() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         {publications.map((item) => {
-          const Icon = item.icon
+          // const Icon = item.icon
 
           const card = (
             <Card className={`relative h-full overflow-hidden rounded-lg border-border/70 bg-card/65 p-6 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${item.href ? 'hover-border-glow-blue' : 'hover:border-foreground/20'}`}>
-                <div className="absolute right-6 top-6 opacity-10">
-                  <ScrollText className="h-24 w-24" />
+              <div className="relative">
+                <div className="mb-8 flex items-center justify-between gap-4">
+                  <span className="inline-flex items-center gap-2 rounded-md border border-border/70 bg-background/60 px-3 py-1.5 text-sm font-medium">
+                    {/* <Icon className="h-4 w-4" /> */}
+                    {item.type}
+                  </span>
+                  <span className={`inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-medium ${item.status === 'View PDF' ? 'bg-zinc-700 text-white hover:bg-zinc-600 transition-all duration-300' : 'bg-primary/10 text-primary'}`}>
+                    {item.status === 'View PDF' ? <FileText className="h-4 w-4" /> : <BadgeCheck className="h-4 w-4" />}
+                    {item.status}
+                  </span>
                 </div>
-                <div className="relative">
-                  <div className="mb-8 flex items-center justify-between gap-4">
-                    <span className="inline-flex items-center gap-2 rounded-md border border-border/70 bg-background/60 px-3 py-1.5 text-sm font-medium">
-                      <Icon className="h-4 w-4" />
-                      {item.type}
-                    </span>
-                    <span className={`inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-medium ${item.status === 'Published' ? 'bg-sky-500/10 text-sky-500 dark:text-sky-400' : 'bg-primary/10 text-primary'}`}>
-                      <BadgeCheck className="h-4 w-4" />
-                      {item.status}
-                    </span>
-                  </div>
-                  <h3 className="max-w-xl text-2xl font-semibold">{item.title}</h3>
-                  <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
-                    {item.description}
-                  </p>
-                </div>
-              </Card>
+                <h3 className="max-w-xl text-2xl font-semibold">{item.title}</h3>
+                <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
+                  {item.description}
+                </p>
+              </div>
+            </Card>
           )
 
           if (item.href) {

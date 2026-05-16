@@ -37,6 +37,7 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --star-color: 25, 56, 154;
 }
 
 .dark {
@@ -72,6 +73,7 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+  --star-color: 255, 255, 255;
 }
 
 @theme inline {
@@ -298,13 +300,13 @@
   border-radius: 50%;
   opacity: 0.46;
   background-image:
-    radial-gradient(circle at 12% 22%, rgba(255, 255, 255, 0.68) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 32% 12%, rgba(255, 255, 255, 0.45) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 68% 18%, rgba(255, 255, 255, 0.58) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 86% 34%, rgba(255, 255, 255, 0.42) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 22% 62%, rgba(255, 255, 255, 0.38) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 76% 70%, rgba(255, 255, 255, 0.52) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 48% 82%, rgba(255, 255, 255, 0.34) 0 1px, transparent 1.5px);
+    radial-gradient(circle at 12% 22%, rgba(var(--star-color), 0.68) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 32% 12%, rgba(var(--star-color), 0.45) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 68% 18%, rgba(var(--star-color), 0.58) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 86% 34%, rgba(var(--star-color), 0.42) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 22% 62%, rgba(var(--star-color), 0.38) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 76% 70%, rgba(var(--star-color), 0.52) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 48% 82%, rgba(var(--star-color), 0.34) 0 1px, transparent 1.5px);
   background-size:
     220px 220px,
     260px 260px,
@@ -401,4 +403,49 @@
 
 .hover-border-glow-blue:hover {
   animation: border-glow-blue 2s ease-in-out infinite;
+}
+
+@keyframes border-glow-gold {
+  0%, 100% {
+    border-color: rgba(250, 204, 21, 0.4);
+    box-shadow: 0 0 10px rgba(250, 204, 21, 0.2);
+  }
+  50% {
+    border-color: rgba(250, 204, 21, 1);
+    box-shadow: 0 0 24px rgba(250, 204, 21, 0.5);
+  }
+}
+
+.hover-border-glow-gold:hover {
+  animation: border-glow-gold 2s ease-in-out infinite;
+}
+
+@keyframes border-glow-silver {
+  0%, 100% {
+    border-color: rgba(148, 163, 184, 0.4);
+    box-shadow: 0 0 10px rgba(148, 163, 184, 0.2);
+  }
+  50% {
+    border-color: rgba(148, 163, 184, 1);
+    box-shadow: 0 0 24px rgba(148, 163, 184, 0.5);
+  }
+}
+
+.hover-border-glow-silver:hover {
+  animation: border-glow-silver 2s ease-in-out infinite;
+}
+
+@keyframes border-glow-bronze {
+  0%, 100% {
+    border-color: rgba(249, 115, 22, 0.4);
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.2);
+  }
+  50% {
+    border-color: rgba(249, 115, 22, 1);
+    box-shadow: 0 0 24px rgba(249, 115, 22, 0.5);
+  }
+}
+
+.hover-border-glow-bronze:hover {
+  animation: border-glow-bronze 2s ease-in-out infinite;
 }

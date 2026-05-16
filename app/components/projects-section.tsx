@@ -337,7 +337,7 @@ function ProjectTimeMachine() {
                   fill
                   sizes="(max-width: 768px) 96vw, 1080px"
                   className="object-cover transition duration-500 hover:scale-[1.03]"
-                  priority={isPrimary}
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/10" />
                 <div className="absolute inset-x-4 bottom-4 flex flex-wrap gap-2">

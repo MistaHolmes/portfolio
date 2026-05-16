@@ -97,7 +97,7 @@ export default function AchievementsSection() {
 
                     return (
                       <div key={src} className={`absolute left-1/2 top-4 h-40 w-56 rounded-md border border-border/60 bg-card shadow-lg backdrop-blur-sm transition-all duration-700 ease-out opacity-0 -translate-x-1/2 overflow-hidden group-hover:opacity-100 flex items-center justify-center ${transformClass}`}>
-                        <Image src={src} alt={`${achievement.title} Certificate`} fill className="object-cover" />
+                        <Image src={src} alt={`${achievement.title} Certificate`} fill priority className="object-cover" />
                       </div>
                     );
                   })}

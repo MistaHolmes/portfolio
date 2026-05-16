@@ -85,6 +85,7 @@ export default function ContactSection() {
           src="/banner.png"
           alt="Cover Image"
           fill
+          priority
           className="object-cover object-[center_35%] filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
         />
         {/* Original Heavy Vignette (Visible by default, hidden on hover) */}

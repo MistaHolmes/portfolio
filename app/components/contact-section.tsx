@@ -33,7 +33,7 @@ export default function ContactSection() {
           <h2>Get in Touch</h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 mt-8">
+        <div className="grid md:grid-cols-2 gap-6 mt-2">
           <motion.div variants={itemVariants}>
             <ContactForm />
           </motion.div>

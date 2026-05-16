@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useState, useRef } from "react"
+import { motion, AnimatePresence, useInView } from "framer-motion"
 import { experiencesData } from "./experience-data"
 import ExperienceList from "./experience-list"
 import ExperienceGrid from "./experience-grid"
@@ -9,6 +9,9 @@ import { Button } from "@/components/ui/button"
 import { LayoutGrid, List } from "lucide-react"
 
 export default function ExperienceSection() {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: false, amount: 0.15 })
+
   const [view, setView] = useState<"grid" | "list">("grid")
   const [activeFilter, setActiveFilter] = useState<string>("All")
 
@@ -18,8 +21,24 @@ export default function ExperienceSection() {
     activeFilter === "All" || exp.company === activeFilter
   )
 
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  }
+
   return (
-    <section id="experience" className="py-24 relative overflow-hidden">
+    <motion.section
+      ref={ref}
+      id="experience"
+      className="section-spacing relative overflow-hidden"
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      variants={containerVariants}
+    >
       {/* Dynamic Background Hue */}
       <motion.div
         animate={{
@@ -37,35 +56,52 @@ export default function ExperienceSection() {
       />
 
       <div className="container mx-auto px-4 max-w-6xl relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div className="space-y-4">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-3xl md:text-5xl font-bold tracking-tight text-foreground"
+        <motion.div
+          className="section-heading"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2>Experience</h2>
+          <p>
+            A timeline of my professional journey, side projects, and open-source contributions.
+          </p>
+        </motion.div>
+
+        {/* Filters and View Toggle */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-4"
+        >
+          {/* Filters */}
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <Button
+              variant={activeFilter === "All" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setActiveFilter("All")}
+              className="rounded-full"
             >
-              Experience
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-lg text-muted-foreground max-w-2xl"
-            >
-              A timeline of my professional journey, side projects, and open-source contributions.
-            </motion.p>
+              All
+            </Button>
+            {companies.map(company => (
+              <Button
+                key={company}
+                variant={activeFilter === company ? "default" : "outline"}
+                size="sm"
+                onClick={() => setActiveFilter(company)}
+                className="rounded-full"
+              >
+                {company}
+              </Button>
+            ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex items-center gap-2 bg-muted/50 p-1.5 rounded-lg border border-border/50 backdrop-blur-sm self-start md:self-auto shrink-0"
-          >
+          {/* View Toggle */}
+          <div className="flex items-center gap-2 bg-muted/50 p-1.5 rounded-lg border border-border/50 backdrop-blur-sm shrink-0">
             <Button
               variant={view === "list" ? "secondary" : "ghost"}
               size="sm"
@@ -84,36 +120,7 @@ export default function ExperienceSection() {
               <LayoutGrid className="w-4 h-4" />
               <span className="hidden sm:inline">Grid</span>
             </Button>
-          </motion.div>
-        </div>
-
-        {/* Filters */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-wrap items-center gap-2 mb-12"
-        >
-          <Button
-            variant={activeFilter === "All" ? "default" : "outline"}
-            size="sm"
-            onClick={() => setActiveFilter("All")}
-            className="rounded-full"
-          >
-            All
-          </Button>
-          {companies.map(company => (
-            <Button
-              key={company}
-              variant={activeFilter === company ? "default" : "outline"}
-              size="sm"
-              onClick={() => setActiveFilter(company)}
-              className="rounded-full"
-            >
-              {company}
-            </Button>
-          ))}
+          </div>
         </motion.div>
 
         {/* Content */}
@@ -143,6 +150,6 @@ export default function ExperienceSection() {
           </AnimatePresence>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }

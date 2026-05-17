@@ -77,9 +77,9 @@ const projects: Project[] = [
     description:
       "An AI-powered Discord bot with a document-grounded RAG pipeline for study sessions and quiz generation.",
     image:
-      "https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/R2-uploader/uploads/1778925590843_4f82d8a1-a064-42c2-be5f-dcada18e4197.png",
+      "https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/R2-uploader/uploads/Recall-Card.png",
     link: "https://github.com/MistaHolmes/Recall",
-    website: "https://discord.gg/wSETGkV9HY",
+    website: "https://recall.abhasbehera.in/",
     tags: [
       "Python",
       "LangChain",
@@ -97,7 +97,7 @@ const projects: Project[] = [
     image:
       "https://pub-a7deba7d0b9642f8afcfd3aebbcb446f.r2.dev/R2-uploader/uploads/1778919854270_Screenshot%20from%202026-05-16%2013-53-40.png",
     link: "https://github.com/MistaHolmes/Techincal-Phase-2/",
-    website: "https://www.draftdocks.in/",
+    website: "https://dockstudio.abhasbehera.in/",
     tags: [
       "React",
       "WebContainers",

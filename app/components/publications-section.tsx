@@ -44,7 +44,6 @@ export default function PublicationsSection() {
     >
       <motion.div className="section-heading mb-8" variants={itemVariants}>
         <h3 className="text-3xl font-semibold">Patent & Research</h3>
-        <p>Formal technical work that moves beyond shipped products into defensible ideas.</p>
       </motion.div>
 
       <div className="grid gap-6 lg:grid-cols-2">
@@ -52,7 +51,7 @@ export default function PublicationsSection() {
           // const Icon = item.icon
 
           const card = (
-            <Card className={`relative h-full overflow-hidden rounded-lg border-border/70 bg-card/65 p-6 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${item.href ? 'hover-border-glow-blue' : 'hover:border-foreground/20'}`}>
+            <Card className={`relative h-full overflow-hidden rounded-xl glass-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${item.href ? 'hover-border-glow-blue' : 'hover:border-foreground/20'}`}>
               <div className="relative">
                 <div className="mb-8 flex items-center justify-between gap-4">
                   <span className="inline-flex items-center gap-2 rounded-md border border-border/70 bg-background/60 px-3 py-1.5 text-sm font-medium">

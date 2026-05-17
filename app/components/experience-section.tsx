@@ -64,9 +64,6 @@ export default function ExperienceSection() {
           transition={{ duration: 0.5 }}
         >
           <h2>Experience</h2>
-          <p>
-            A timeline of my professional journey, side projects, and open-source contributions.
-          </p>
         </motion.div>
 
         {/* Filters and View Toggle */}

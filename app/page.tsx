@@ -16,6 +16,8 @@ import ProjectsSection from "./components/projects-section"
 import ExperienceSection from "./components/experience-section"
 import ScrollProgress from "./components/scroll-progress"
 
+import { AnimatedDivider } from "./components/animated-divider"
+
 export default function Page() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { theme, setTheme } = useTheme()
@@ -245,10 +247,15 @@ export default function Page() {
               transition={{ duration: 0.45, ease: "easeOut" }}
             >
               <AboutSection />
+              <AnimatedDivider />
               <ExperienceSection />
+              <AnimatedDivider />
               <ProjectsSection />
+              <AnimatedDivider />
               <AchievementsSection />
+              <AnimatedDivider />
               <TechStack />
+              <AnimatedDivider />
               <ContactSection />
             </motion.div>
           )}

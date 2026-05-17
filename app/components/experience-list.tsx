@@ -77,7 +77,7 @@ function ExperienceListItem({ exp, index }: { exp: Experience; index: number }) 
       {/* Timeline dot */}
       <div className="absolute -left-8 top-6 w-3 h-3 rounded-full bg-primary/40 ring-4 ring-background group-hover:bg-primary group-hover:scale-125 transition-all duration-200" />
 
-      <div className="bg-card/30 hover:bg-card/50 transition-colors border border-border/50 rounded-xl p-6 relative overflow-hidden backdrop-blur-sm">
+      <div className="glass-card rounded-xl p-6 relative overflow-hidden transition-all duration-300 hover:shadow-xl">
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
           <div className="space-y-2">
             <div className="flex items-center gap-3 flex-wrap">

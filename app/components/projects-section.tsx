@@ -406,10 +406,6 @@ export default function ProjectsSection() {
     >
       <motion.div className="section-heading" variants={itemVariants}>
         <h2>Projects</h2>
-        <p>
-          Product-focused builds across publishing, civic technology, and
-          admin workflows.
-        </p>
       </motion.div>
 
       <motion.div variants={itemVariants}>

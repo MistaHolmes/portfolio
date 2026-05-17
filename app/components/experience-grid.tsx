@@ -270,7 +270,7 @@ function YearRow({
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <div className={`mt-4 mb-8 ml-16 md:ml-24 p-6 rounded-2xl border bg-card/50 backdrop-blur-md relative overflow-hidden`}>
+            <div className={`mt-4 mb-8 ml-16 md:ml-24 p-6 rounded-2xl glass-card relative overflow-hidden transition-all duration-300 hover:shadow-xl`}>
               {/* Colored top border accent */}
               <div className={`absolute top-0 left-0 w-full h-1 ${categoryColors[selectedExp.category].split(' ')[0]}`} />
 

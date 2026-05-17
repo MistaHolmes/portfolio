@@ -147,7 +147,6 @@ export default function TechStack() {
     >
       <motion.div className="section-heading" variants={itemVariants}>
         <h2>Tech Stack</h2>
-        <p>Frontend, backend, cloud, and data tools I use to build production systems.</p>
       </motion.div>
 
       <motion.div className="mb-10 space-y-3" variants={itemVariants}>
@@ -158,7 +157,7 @@ export default function TechStack() {
       <div className="grid gap-5 md:grid-cols-2">
         {technologies.map((tech) => (
           <motion.div key={tech.category} variants={itemVariants}>
-            <Card className="h-full rounded-lg border-border/70 bg-neutral-500/10 p-6 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-foreground/20 hover:bg-neutral-500/14 hover:shadow-xl">
+            <Card className="h-full rounded-xl glass-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
               <h3 className="mb-5 text-xl font-semibold">{tech.category}</h3>
               <div className="grid gap-3 sm:grid-cols-2">
                 {tech.skills.map((skill) => (

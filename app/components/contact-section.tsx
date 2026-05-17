@@ -39,7 +39,7 @@ export default function ContactSection() {
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <Card className="h-full p-6 bg-transparent flex flex-col items-center justify-center space-y-8">
+            <Card className="h-full p-6 glass-card rounded-xl flex flex-col items-center justify-center space-y-8 transition-all duration-300 hover:shadow-xl">
               <div className="text-center space-y-2">
                 <h3 className="text-2xl font-semibold">Social Profiles</h3>
                 <p className="text-muted-foreground text-sm px-2">

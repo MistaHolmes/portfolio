@@ -69,7 +69,6 @@ export default function AchievementsSection() {
     >
       <motion.div className="section-heading" variants={itemVariants}>
         <h2>Achievements</h2>
-        <p>Hackathon wins, competitive builds, and recognitions from shipping under pressure.</p>
       </motion.div>
 
       <div className="grid gap-5 md:grid-cols-3">
@@ -103,7 +102,7 @@ export default function AchievementsSection() {
                   })}
                 </div>
 
-                <Card className={`relative z-10 h-full rounded-lg border-border/70 bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${achievement.glowClass}`}>
+                <Card className={`relative z-10 h-full rounded-xl glass-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${achievement.glowClass}`}>
                   <div className="mb-6 flex items-center justify-between gap-4">
                     <span className={`flex h-11 w-11 items-center justify-center rounded-md ${achievement.iconBg} ${achievement.iconColor}`}>
                       <Icon className="h-5 w-5" />

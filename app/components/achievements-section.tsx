@@ -102,7 +102,7 @@ export default function AchievementsSection() {
                   })}
                 </div>
 
-                <Card className={`relative z-10 h-full rounded-xl glass-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${achievement.glowClass}`}>
+                <Card className={`relative z-10 h-full rounded-xl glass-card glass-card-high-opacity p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${achievement.glowClass}`}>
                   <div className="mb-6 flex items-center justify-between gap-4">
                     <span className={`flex h-11 w-11 items-center justify-center rounded-md ${achievement.iconBg} ${achievement.iconColor}`}>
                       <Icon className="h-5 w-5" />

@@ -23,6 +23,7 @@ export default function AsciiBoat() {
   const [frame, setFrame] = useState(boatFrame1)
   const [showTooltip, setShowTooltip] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [isClickable, setIsClickable] = useState(true)
 
   useEffect(() => {
     // Mount immediately
@@ -39,9 +40,15 @@ export default function AsciiBoat() {
       setTimeout(() => setShowTooltip(false), 12000)
     }, 6000)
 
+    // Make screen clickable for 20 seconds (slightly longer than the 18s animation)
+    const clickableTimeout = setTimeout(() => {
+      setIsClickable(false)
+    }, 20000)
+
     return () => {
       clearInterval(frameInterval)
       clearTimeout(initialTooltip)
+      clearTimeout(clickableTimeout)
     }
   }, [])
 
@@ -61,30 +68,52 @@ export default function AsciiBoat() {
   if (!mounted) return null
 
   return (
-    <motion.div
-      initial={{ x: "-100%" }}
-      animate={{ x: "100vw" }}
-      transition={{ duration: 18, ease: "linear" }}
-      className="absolute bottom-10 left-0 z-0 flex flex-col items-center pointer-events-none"
-    >
-      <motion.button
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: showTooltip ? 1 : 0, y: showTooltip ? 0 : 10 }}
-        transition={{ duration: 1 }}
-        onClick={scrollToBottom}
-        className="mb-3 bg-black/80 hover:bg-black backdrop-blur-md px-4 py-2 rounded-lg border border-white/20 shadow-xl relative text-[10px] md:text-xs tracking-[0.2em] uppercase text-white font-mono pointer-events-auto cursor-pointer transition-colors"
-      >
-        the Truth lies at the bottom
-        <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-black/80 rotate-45 border-r border-b border-white/20" />
-      </motion.button>
+    <>
+      {/* Full screen click target while boat is moving */}
+      {isClickable && (
+        <div 
+          className="fixed inset-0 z-[40] cursor-pointer"
+          onClick={scrollToBottom}
+          aria-label="Click anywhere to trigger easter egg"
+        />
+      )}
       
-      <button
-        onClick={scrollToBottom}
-        className="whitespace-pre font-mono text-xs md:text-sm text-foreground/80 dark:text-foreground/70 leading-none opacity-80 dark:opacity-70 pointer-events-auto cursor-pointer hover:opacity-100 dark:hover:opacity-100 transition-opacity border-none bg-transparent p-0 text-left"
-        aria-label="Scroll to bottom easter egg"
+      <motion.div
+        initial={{ x: "-100%" }}
+        animate={{ x: "100vw" }}
+        transition={{ duration: 18, ease: "linear" }}
+        className="absolute bottom-10 left-0 z-50 flex flex-col items-center pointer-events-none"
       >
-        {frame}
-      </button>
-    </motion.div>
+        <motion.button
+          initial={{ opacity: 0, y: 10 }}
+          animate={showTooltip ? { 
+            opacity: 1, 
+            y: [0, -5, 0]
+          } : { 
+            opacity: 0, 
+            y: 10 
+          }}
+          transition={showTooltip ? {
+            y: { repeat: Infinity, duration: 2, ease: "easeInOut" },
+            opacity: { duration: 0.5 }
+          } : { 
+            duration: 0.5 
+          }}
+          onClick={scrollToBottom}
+          className="mb-3 bg-black/90 hover:bg-black backdrop-blur-md px-5 py-3 rounded-lg border border-amber-500/50 shadow-[0_0_15px_rgba(251,191,36,0.3)] hover:shadow-[0_0_25px_rgba(251,191,36,0.5)] hover:border-amber-400/80 relative text-[10px] md:text-xs tracking-[0.15em] uppercase text-amber-100 font-mono pointer-events-auto cursor-pointer transition-all duration-300 font-semibold flex items-center gap-2"
+        >
+          <span>✨ Click to embark for Valhalla 👇</span>
+          <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-black/90 rotate-45 border-r border-b border-amber-500/50 transition-colors" />
+        </motion.button>
+        
+        <button
+          onClick={scrollToBottom}
+          className="relative whitespace-pre font-mono text-xs md:text-sm text-foreground/80 dark:text-foreground/70 leading-none opacity-80 dark:opacity-70 pointer-events-auto cursor-pointer hover:opacity-100 dark:hover:opacity-100 transition-opacity border-none bg-transparent p-4 text-left"
+          aria-label="Scroll to bottom easter egg"
+        >
+          {frame}
+        </button>
+      </motion.div>
+    </>
   )
 }

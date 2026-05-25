@@ -236,7 +236,7 @@ export default function Page() {
 
       {/* Easter Egg Hint / Thematic Element - Placed outside main to span edge-to-edge */}
       <div 
-        className="absolute top-0 w-screen h-[100vh] pointer-events-none overflow-hidden z-0"
+        className="absolute top-0 w-screen h-[100vh] pointer-events-none overflow-hidden z-50"
         style={{ left: "50%", transform: "translateX(-50%)" }}
       >
         <AsciiBoat />

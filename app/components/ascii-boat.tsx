@@ -33,12 +33,12 @@ export default function AsciiBoat() {
       setFrame(f => f === boatFrame1 ? boatFrame2 : boatFrame1)
     }, 600)
 
-    // Initial tooltip trigger after 6s (gives the boat time to fully sail onto the screen)
+    // Initial tooltip trigger after 4s (gives the boat time to fully sail onto the screen)
     const initialTooltip = setTimeout(() => {
       setShowTooltip(true)
       // Stay visible a bit longer since it only runs once
       setTimeout(() => setShowTooltip(false), 12000)
-    }, 6000)
+    }, 4000)
 
     // Make screen clickable for 20 seconds (slightly longer than the 18s animation)
     const clickableTimeout = setTimeout(() => {

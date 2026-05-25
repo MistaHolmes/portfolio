@@ -18,7 +18,7 @@ const achievements = [
     glowClass: "hover-border-glow-gold",
     iconColor: "text-amber-500",
     iconBg: "bg-amber-500/10",
-    images: ["/Srusti TechHack.jpg"]
+    images: ["/Srusti TechHack.jpg","/Code-Relay-4.0.png"]
   },
   {
     title: "1st Runner-Up",

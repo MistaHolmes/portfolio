@@ -125,10 +125,14 @@
     scrollbar-width: none;
     /* IE and Edge */
     -ms-overflow-style: none;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
   body {
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
+    max-width: 100vw;
     font-family:
       "Inter",
       "Aptos",
@@ -253,6 +257,9 @@
 .ambient-hue {
   --ambient-x: 50%;
   --ambient-y: 45%;
+  --ambient-r: 25;
+  --ambient-g: 56;
+  --ambient-b: 154;
   pointer-events: none;
   position: fixed;
   inset: 0;
@@ -260,9 +267,9 @@
   background:
     radial-gradient(
       circle 280px at var(--ambient-x) var(--ambient-y),
-      rgba(25, 56, 154, 0.28) 0%,
-      rgba(25, 56, 154, 0.16) 34%,
-      rgba(25, 56, 154, 0.055) 58%,
+      rgba(var(--ambient-r), var(--ambient-g), var(--ambient-b), 0.28) 0%,
+      rgba(var(--ambient-r), var(--ambient-g), var(--ambient-b), 0.16) 34%,
+      rgba(var(--ambient-r), var(--ambient-g), var(--ambient-b), 0.055) 58%,
       transparent 78%
     );
   filter: blur(12px);

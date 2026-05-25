@@ -51,6 +51,7 @@ export default function Hero() {
   return (
     <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 ">
       <div className="hero-stars" aria-hidden="true" />
+
       <motion.div
         variants={containerVariants}
         initial="hidden"

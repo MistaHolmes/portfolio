@@ -17,6 +17,7 @@ import ExperienceSection from "./components/experience-section"
 import ScrollProgress from "./components/scroll-progress"
 
 import { AnimatedDivider } from "./components/animated-divider"
+import AsciiBoat from "./components/ascii-boat"
 
 export default function Page() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -232,6 +233,14 @@ export default function Page() {
           </div>
         )}
       </motion.header>
+
+      {/* Easter Egg Hint / Thematic Element - Placed outside main to span edge-to-edge */}
+      <div 
+        className="absolute top-0 w-screen h-[100vh] pointer-events-none overflow-hidden z-0"
+        style={{ left: "50%", transform: "translateX(-50%)" }}
+      >
+        <AsciiBoat />
+      </div>
 
       <main className="px-4 md:px-6">
         <div className="halo-container">

@@ -40,9 +40,25 @@ export default function MouseEffects() {
         dotRef.current.style.transform = `translate3d(${dotX}px, ${dotY}px, 0) translate(-50%, -50%)`
       }
 
+      const scrollY = window.scrollY
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+      const distanceFromBottom = maxScroll - scrollY
+      
+      let r = 25, g = 56, b = 154 // Base Blue
+      if (maxScroll > 500 && distanceFromBottom < 1000) {
+         // Interpolate to Violet (138, 43, 226)
+         const progress = Math.max(0, Math.min(1, 1 - (distanceFromBottom / 1000)))
+         r = 25 + (138 - 25) * progress
+         g = 56 + (43 - 56) * progress
+         b = 154 + (226 - 154) * progress
+      }
+
       if (haloRef.current) {
         haloRef.current.style.setProperty("--ambient-x", `${haloX}%`)
         haloRef.current.style.setProperty("--ambient-y", `${haloY}%`)
+        haloRef.current.style.setProperty("--ambient-r", Math.round(r).toString())
+        haloRef.current.style.setProperty("--ambient-g", Math.round(g).toString())
+        haloRef.current.style.setProperty("--ambient-b", Math.round(b).toString())
       }
 
       frame = requestAnimationFrame(tick)

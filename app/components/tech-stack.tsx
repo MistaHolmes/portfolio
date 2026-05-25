@@ -12,8 +12,6 @@ const technologies = [
       { name: "JavaScript", logo: "https://cdn.simpleicons.org/javascript/F7DF1E" },
       { name: "TypeScript", logo: "https://cdn.simpleicons.org/typescript/3178C6" },
       { name: "Python", logo: "https://cdn.simpleicons.org/python/3776AB" },
-      { name: "C++", logo: "https://cdn.simpleicons.org/cplusplus/00599C" },
-      { name: "Go", logo: "https://cdn.simpleicons.org/go/00ADD8" },
     ],
   },
   {
@@ -24,8 +22,6 @@ const technologies = [
       { name: "TypeScript", logo: "https://cdn.simpleicons.org/typescript/3178C6" },
       { name: "Tailwind CSS", logo: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
       { name: "JavaScript", logo: "https://cdn.simpleicons.org/javascript/F7DF1E" },
-      { name: "React Native", logo: "https://cdn.simpleicons.org/react/61DAFB" },
-      { name: "Recoil", logo: "https://cdn.simpleicons.org/recoil/3578E5" },
     ],
   },
   {
@@ -36,7 +32,6 @@ const technologies = [
       { name: "LangChain", logo: "https://cdn.simpleicons.org/langchain/1C3C3C" },
       { name: "WebSockets", logo: "/WS.png" },
       { name: "Vitest", logo: "https://cdn.simpleicons.org/vitest/6E9F18" },
-      { name: "Pub/Sub", logo: "https://cdn.simpleicons.org/googlecloud/4285F4" },
     ],
   },
   {
@@ -48,6 +43,7 @@ const technologies = [
       { name: "Nginx", logo: "https://cdn.simpleicons.org/nginx/009639" },
       { name: "Helm", logo: "https://cdn.simpleicons.org/helm/0F1689" },
       { name: "Terraform", logo: "https://cdn.simpleicons.org/terraform/844FBA" },
+      { name: "Google Cloud", logo: "https://cdn.simpleicons.org/googlecloud/4285F4" }, 
     ],
   },
   {
@@ -67,8 +63,7 @@ const technologies = [
       { name: "GitHub", logo: "https://cdn.simpleicons.org/github/181717" },
       { name: "Turborepo", logo: "https://cdn.simpleicons.org/turborepo/EF4444" },
       { name: "Vercel", logo: "https://cdn.simpleicons.org/vercel/000000" },
-      { name: "Google Cloud", logo: "https://cdn.simpleicons.org/googlecloud/4285F4" },
-    ],
+   ],
   },
 ]
 

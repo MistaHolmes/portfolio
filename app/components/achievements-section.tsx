@@ -37,13 +37,13 @@ const achievements = [
     event: "Smart India Hackathon & Code Relay 3.0",
     year: "2025",
     description:
-      "Reached the grand finals of the Smart India Hackathon (Govt. of India) and IIT BBSR's Code Relay 3.0.",
+      "Grand Finalist at Smart India Hackathon, Finalist's at IIT BBSR's Code Relay 3.0, and in Google's Solution Challenge 2026.",
     icon: Award,
     glowClass: "hover-border-glow-bronze",
     iconColor: "text-orange-500",
     iconBg: "bg-orange-500/10",
-    images: ["/SIH-Grand-Finals-2025.jpeg", "/Code Relay 3.0.jpg"]
-  },
+    images: ["/Badge solution challenge.png","/SIH-Grand-Finals-2025.jpeg","/Code Relay 3.0.jpg"]
+  }
 ]
 
 const itemVariants = {

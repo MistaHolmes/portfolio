@@ -35,7 +35,7 @@ const achievements = [
   {
     title: "Grand Finalist",
     event: "Smart India Hackathon & Code Relay 3.0",
-    year: "2025",
+    year: "2025/26",
     description:
       "Grand Finalist at Smart India Hackathon, Finalist's at IIT BBSR's Code Relay 3.0, and in Google's Solution Challenge 2026.",
     icon: Award,

@@ -4,10 +4,8 @@ import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import ContactForm from "./contact-form"
 import { Card } from "@/components/ui/card"
-import { Github, Linkedin, Twitter, Compass } from "lucide-react"
-import Image from "next/image"
-import { useState, useEffect } from "react"
-import VikingShipModal from "./viking-ship-modal"
+import { Github, Linkedin, Twitter } from "lucide-react"
+import { useEffect } from "react"
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -22,9 +20,6 @@ export default function ContactSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: false, amount: 0.2 })
 
-  const [clickCount, setClickCount] = useState(0)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-
   useEffect(() => {
     if (inView) {
       window.dispatchEvent(new CustomEvent('ambient-hue-color', { detail: 'violet' }))
@@ -32,16 +27,6 @@ export default function ContactSection() {
       window.dispatchEvent(new CustomEvent('ambient-hue-color', { detail: 'default' }))
     }
   }, [inView])
-
-  useEffect(() => {
-    if (clickCount > 0 && clickCount < 5) {
-      const timer = setTimeout(() => setClickCount(0), 1500)
-      return () => clearTimeout(timer)
-    } else if (clickCount >= 5) {
-      setIsModalOpen(true)
-      setClickCount(0)
-    }
-  }, [clickCount])
 
   return (
     <motion.section
@@ -102,45 +87,6 @@ export default function ContactSection() {
           </motion.div>
         </div>
       </div>
-
-      <motion.div 
-        id="bottom-cover"
-        variants={itemVariants} 
-        className="group mt-28 relative w-[96vw] max-w-[1600px] left-1/2 -translate-x-1/2 h-[40vh] sm:h-[50vh] md:h-[500px] rounded-t-2xl overflow-hidden shadow-2xl -mb-[4.5rem] cursor-pointer"
-        onClick={() => setClickCount(prev => prev + 1)}
-      >
-        <Image
-          src="/banner.png"
-          alt="Cover Image"
-          fill
-          priority
-          className="object-cover object-[center_35%] filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
-        />
-        {/* Original Heavy Vignette (Visible by default, hidden on hover) */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent pointer-events-none transition-opacity duration-700 opacity-100 group-hover:opacity-0" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/10 to-transparent pointer-events-none transition-opacity duration-700 opacity-100 group-hover:opacity-0" />
-
-        {/* Subtle Edge Vignette (Hidden by default, visible on hover) */}
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/80 to-transparent pointer-events-none transition-opacity duration-700 opacity-0 group-hover:opacity-100" />
-        <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-background/80 to-transparent pointer-events-none transition-opacity duration-700 opacity-0 group-hover:opacity-100" />
-        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-background/80 to-transparent pointer-events-none transition-opacity duration-700 opacity-0 group-hover:opacity-100" />
-        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background/80 to-transparent pointer-events-none transition-opacity duration-700 opacity-0 group-hover:opacity-100" />
-        {/* Improved Easter Egg Hint */}
-        <div className={`absolute inset-0 flex items-center justify-center pointer-events-none z-20 transition-opacity duration-500 ${clickCount > 0 ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
-           <div className="flex flex-col items-center gap-3 bg-black/40 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/20 shadow-2xl">
-             <Compass className="w-8 h-8 text-primary animate-pulse" />
-             <span className="text-sm font-mono text-primary font-bold tracking-widest uppercase text-center">
-               {clickCount === 0 ? "Witness the sacred battle" : `Awakening... ${clickCount}/5`}
-             </span>
-             <span className="text-[10px] text-primary/70 font-mono mt-[-4px]">
-               Click to reveal
-             </span>
-           </div>
-        </div>
-      </motion.div>
-
-      {/* Easter Egg Modal */}
-      <VikingShipModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </motion.section>
   )
 }

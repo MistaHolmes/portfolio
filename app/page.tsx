@@ -17,46 +17,14 @@ import ExperienceSection from "./components/experience-section"
 import ScrollProgress from "./components/scroll-progress"
 
 import { AnimatedDivider } from "./components/animated-divider"
-import AsciiBoat from "./components/ascii-boat"
 
 export default function Page() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
-  const [contentReady, setContentReady] = useState(false)
 
   useEffect(() => {
     setMounted(true)
-  }, [])
-
-  useEffect(() => {
-    if (window.location.hash) {
-      setContentReady(true)
-      return
-    }
-
-    const revealContent = () => setContentReady(true)
-    const revealFromHero = (event: Event) => {
-      const sectionId = (event as CustomEvent<string>).detail
-      setContentReady(true)
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => {
-          document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
-        })
-      })
-    }
-
-    window.addEventListener("wheel", revealContent, { once: true, passive: true })
-    window.addEventListener("touchmove", revealContent, { once: true, passive: true })
-    window.addEventListener("keydown", revealContent, { once: true })
-    window.addEventListener("portfolio:reveal-content", revealFromHero)
-
-    return () => {
-      window.removeEventListener("wheel", revealContent)
-      window.removeEventListener("touchmove", revealContent)
-      window.removeEventListener("keydown", revealContent)
-      window.removeEventListener("portfolio:reveal-content", revealFromHero)
-    }
   }, [])
 
   const toggleMobileMenu = () => {
@@ -69,7 +37,6 @@ export default function Page() {
 
   const goToSection = (event: MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     event.preventDefault()
-    setContentReady(true)
     setMobileMenuOpen(false)
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
@@ -80,7 +47,7 @@ export default function Page() {
 
   return (
     <div className="relative isolate min-h-screen bg-transparent">
-      {contentReady && <ScrollProgress />}
+      <ScrollProgress />
       <MouseEffects />
       <motion.header
         initial={{ opacity: 0, y: -50 }}
@@ -234,21 +201,12 @@ export default function Page() {
         )}
       </motion.header>
 
-      {/* Easter Egg Hint / Thematic Element - Placed outside main to span edge-to-edge */}
-      <div 
-        className="absolute top-0 w-screen h-[100vh] pointer-events-none overflow-hidden z-50"
-        style={{ left: "50%", transform: "translateX(-50%)" }}
-      >
-        <AsciiBoat />
-      </div>
-
       <main className="px-4 md:px-6">
         <div className="halo-container">
           <div className="halo-background" />
           <Hero />
         </div>
         <AnimatePresence>
-          {contentReady && (
             <motion.div
               initial={{ opacity: 0, y: 32 }}
               animate={{ opacity: 1, y: 0 }}
@@ -267,7 +225,6 @@ export default function Page() {
               <AnimatedDivider />
               <ContactSection />
             </motion.div>
-          )}
         </AnimatePresence>
       </main>
 
